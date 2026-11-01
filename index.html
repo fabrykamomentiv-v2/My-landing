@@ -954,8 +954,8 @@ function start(){CUR=pickCampaign();hwDates();var th=Q.get('theme');var id=T.som
  var tt=T.filter(function(x){return x.id===id})[0];if(tt&&CUR&&id!=='halloween'&&id!=='brand'){tt.title=CUR.title;if(CUR.subtitle)tt.lead=esc(CUR.subtitle)}
  if(tt&&tt.lead&&tt.lead.indexOf('ПОТРІБНО')>=0)tt.lead='Подарунки до свята — набори, 3D-друк і значки';
  buildSections();set(id,false)}
-if(CFG.catalogUrl){var done0=false,go=function(){if(!done0){done0=true;start()}};setTimeout(go,3000);
- fetch(CFG.catalogUrl).then(function(r){return r.json()}).then(function(d){if(d&&d.products&&d.products.length&&d.campaigns){DATA=norm(d);indexP();if(done0)buildSections()}}).catch(function(){}).then(go)}
+if(CFG.catalogUrl){var done0=false,go=function(){if(!done0){done0=true;start()}};setTimeout(go,5000);
+ fetch(CFG.catalogUrl).then(function(r){return r.json()}).then(function(d){if(d&&d.products&&d.products.length&&d.campaigns){DATA=norm(d);indexP();if(done0){var nc=pickCampaign(),oid=CUR?CUR.campaign_id:'',nid=nc?nc.campaign_id:'';if(nid!==oid&&!Q.get('theme'))start();else buildSections()}}}).catch(function(){}).then(go)}
 else start();
 })();
 </script>
