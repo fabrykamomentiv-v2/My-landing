@@ -467,7 +467,7 @@ img,video{display:block;max-width:100%}
     </div>
     <div class="pwrap"><div class="eyes e1" aria-hidden="true"><div class="ey"><div class="pupil"></div></div><div class="ey"><div class="pupil"></div></div></div>
     <div class="panel">
-     <div class="pa"><span class="pill">Геловін, 31 жовтня</span>
+     <div class="pa"><span class="pill" id="hwpill">Геловін, 31 жовтня</span>
      <p class="h1x" id="h1hw" role="heading" aria-level="1">Формуємо емоції.<br>Бережемо миті</p>
      <p class="lead2">Крафтові набори та вироби з 3D‑друку. Зберемо коробку до свята: для дитини, друзів чи колег.</p>
      </div>
@@ -742,6 +742,13 @@ function money(v){if(v===''||v==null)return '';var n=Number(v);return 'від '+
 function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var THEMES=['brand','kokhannia','rodyna','ukraina','zyma','vesna-velykden','lito','osin','halloween'];
 function pickCampaign(){
+ /* 1) рішення таблиці: «Зараз на першому екрані» = так (з урахуванням «Ручний показ до») */
+ var hn=DATA.campaigns.filter(function(c){return c.hero_now==='так'})[0];
+ if(hn)return hn.campaign_id==='always'||THEMES.indexOf(hn.theme)<0?null:hn;
+ /* 2) ручний показ, якщо в даних немає hero_now (вбудована копія) */
+ var mn=DATA.campaigns.filter(function(c){return c.active==='так'&&c.hero_manual_until&&c.hero_manual_until>=TODAY&&THEMES.indexOf(c.theme)>=0}).sort(function(a,b){return a.hero_manual_until<b.hero_manual_until?-1:1})[0];
+ if(mn)return mn;
+ /* 3) автоматичне правило сайту */
  var c=DATA.campaigns.filter(function(c){return c.active==='так'&&c.campaign_id!=='always'&&c.sales_start&&c.sales_start<=TODAY&&(c.hero_until||c.date_first)>=TODAY&&THEMES.indexOf(c.theme)>=0});
  c.sort(function(a,b){var fa=a.date_first>=TODAY?0:1,fb=b.date_first>=TODAY?0:1;return fa-fb||(a.priority||9)-(b.priority||9)||(a.date_first<b.date_first?-1:1)});
  return c[0]||null}
@@ -940,12 +947,16 @@ var tgo=document.getElementById('tgoff');if(CFG.telegram){var ta=document.create
 lsw.addEventListener('click',function(){window.fmEvent&&fmEvent('light_toggle',{fm_state:lab.classList.contains('dark')?'off':'on'})});
 document.getElementById('doneMk').innerHTML=html.dataset.theme==='halloween'?'<svg viewBox="0 0 100 120" style="color:#fff;filter:drop-shadow(0 0 8px #c6ff00)"><use href="#gs" fill="#fff"/></svg>':mk();
 
-function start(){CUR=pickCampaign();var th=Q.get('theme');var id=T.some(function(x){return x.id===th})?th:(CUR?CUR.theme:'brand');
+function hwDates(){if(!CUR||CUR.theme!=='halloween')return;var man=CUR.hero_manual_until&&CUR.hero_manual_until>=TODAY&&(!CUR.date_first||CUR.hero_manual_until>CUR.date_first),d=man?CUR.hero_manual_until:CUR.date_first;if(!d)return;
+ var t=new Date(d+'T00:00:00+02:00');if(man)t=new Date(t.getTime()+864e5);end=t.getTime();
+ document.getElementById('hwpill').textContent=man?'Геловін-набори до '+fmtD(d):'Геловін, '+fmtD(d)}
+function start(){CUR=pickCampaign();hwDates();var th=Q.get('theme');var id=T.some(function(x){return x.id===th})?th:(CUR?CUR.theme:'brand');
  var tt=T.filter(function(x){return x.id===id})[0];if(tt&&CUR&&id!=='halloween'&&id!=='brand'){tt.title=CUR.title;if(CUR.subtitle)tt.lead=esc(CUR.subtitle)}
  if(tt&&tt.lead&&tt.lead.indexOf('ПОТРІБНО')>=0)tt.lead='Подарунки до свята — набори, 3D-друк і значки';
  buildSections();set(id,false)}
-start();
-if(CFG.catalogUrl){fetch(CFG.catalogUrl).then(function(r){return r.json()}).then(function(d){if(d&&d.products&&d.products.length){DATA=norm(d);indexP();buildSections()}}).catch(function(){})}
+if(CFG.catalogUrl){var done0=false,go=function(){if(!done0){done0=true;start()}};setTimeout(go,3000);
+ fetch(CFG.catalogUrl).then(function(r){return r.json()}).then(function(d){if(d&&d.products&&d.products.length&&d.campaigns){DATA=norm(d);indexP();if(done0)buildSections()}}).catch(function(){}).then(go)}
+else start();
 })();
 </script>
 <script src="assets/fm-order.js"></script>
