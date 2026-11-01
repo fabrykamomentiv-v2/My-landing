@@ -6,8 +6,7 @@ window.FM_CONFIG = {
 
   // Адреса скрипту каталогу (таблиця «Календар і товари», FM_site_script v1.2).
   // Порожньо — сайт бере вбудовану копію даних assets/data.js. Вмикати після встановлення v1.2 і Cloudinary.
-  catalogUrl: 'https://script.google.com/macros/s/AKfycbzlQaoYzBeme-FYWYus-9TyxcGvjXbzO-vm1C2woEuwaqGTJ4mq8JLSd6FAToeLrPTsng/exec
-',
+  catalogUrl: 'https://script.google.com/macros/s/AKfycbzlQaoYzBeme-FYWYus-9TyxcGvjXbzO-vm1C2woEuwaqGTJ4mq8JLSd6FAToeLrPTsng/exec',
 
   instagram: 'https://www.instagram.com/fabrykamomentiv/',
   email: 'fabrykamomentiv@gmail.com',
