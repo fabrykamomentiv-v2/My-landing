@@ -455,6 +455,23 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
 .hd.tight .ptr span{font-size:12px;max-width:122px}.hd.tight .ptr svg{display:none}
 .hd.tight2 .logo b{font-size:13px}.hd.tight2 .logo span{font-size:10px}.hd.tight2 .logo svg,[data-theme=halloween] .hd.tight2 .logo svg{width:30px;height:30px}.hd.tight2 .logo{gap:6px}[data-theme=halloween] .hd.tight2 .logo{padding:6px 9px 6px 6px}
 .hd.tight3 .ptr{display:none}
+/* 02.11.2026 — стрічки фото в розділах і підказка «Гортай далі» */
+.motto{margin:-4px 0 10px!important;font:800 clamp(17px,1.8vw,20px)/1.3 var(--fm-font-head)!important;color:#1E7A5C!important}
+.labpics{margin-top:clamp(24px,4vw,40px)}
+.labpics .pics{grid-template-columns:repeat(4,minmax(0,1fr))}
+.bdpics,.pkpics{min-width:0}
+.swipe{display:none;align-items:center;gap:4px;margin:0 0 6px;font:800 16px/1 var(--fm-font-head);color:var(--sw,#3B2A24);transform:rotate(-3deg);transform-origin:left;transition:opacity .4s}
+.swipe svg{width:40px;height:26px;animation:bob 1.1s ease-in-out infinite alternate}
+.swipe.gone{opacity:0}
+.sec .swipe{color:var(--sw,#3B2A24);max-width:none;font-size:16px}
+.badges .sec-in p+p{margin-top:10px}
+.lab .swipe{--sw:#6C3BFF}.lab.dark .swipe{--sw:#C6FF00}.badges .swipe{--sw:#1E7A5C}.pack .swipe{--sw:#9E2A2B}
+@media(max-width:899px){
+ .swipe{display:flex}
+ .pics.strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 calc(-1*clamp(16px,5vw,64px));padding:4px clamp(16px,5vw,64px) 14px}
+ .pics.strip::-webkit-scrollbar{display:none}
+ .pics.strip .pic,.pics.strip .pic:first-child{flex:0 0 72%;max-width:320px;aspect-ratio:1;grid-column:auto;scroll-snap-align:center}
+}
 </style>
 </head>
 <body>
@@ -567,6 +584,19 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
    <div class="vid"><video id="gvid" muted loop playsinline preload="metadata" poster="img/ghosts.jpg" aria-label="Відео: привиди з 3D-друку світяться в темряві"><source src="img/ghosts.mp4" type="video/mp4"></video><div class="veil">Вимкніть світло — і побачите, як вони світяться</div><span class="cap">Справжнє відео: привиди 3D-друку в темряві</span></div>
   </div>
  </div>
+ <div class="wide labpics">
+  <p class="swipe" aria-hidden="true"><span>Гортай далі</span><svg viewBox="0 0 54 34" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8C14 30 34 30 47 18"/><path d="M38 14L48 17L45 27"/></svg></p>
+  <div class="pics strip" aria-label="Фото: вироби з 3D-друку">
+   <div class="pic"><img src="img/p3d1.jpg" alt="Фіолетова подарункова коробка з 3D-друку з білим бантом" loading="lazy" width="800" height="800"></div>
+   <div class="pic"><img src="img/p3d2.jpg" alt="Відкрита коробка з 3D-друку з цукерками та синьо-жовтою скринькою-серцем" loading="lazy" width="800" height="800"></div>
+   <div class="pic"><img src="img/p3d3.jpg" alt="Скринька-серце з 3D-друку з фоторамкою всередині" loading="lazy" width="800" height="800"></div>
+   <div class="pic"><img src="img/p3d4.jpg" alt="Синьо-жовта скринька-серце з 3D-друку на підставці" loading="lazy" width="800" height="800"></div>
+   <div class="pic"><img src="img/p3d5.jpg" alt="Органайзер для олівців з 3D-друку з кольоровими олівцями та вазоном" loading="lazy" width="800" height="800"></div>
+   <div class="pic"><img src="img/p3d6.jpg" alt="Гнучкі іграшки з 3D-друку: змійка й павук" loading="lazy" width="800" height="800"></div>
+   <div class="pic"><img src="img/3d05.jpg" alt="Сніжинки з 3D-друку на ялинці: білі вдень і зелені в темряві" loading="lazy" width="800" height="800"></div>
+   <div class="pic"><img src="img/3d06.jpg" alt="Ялинкова іграшка з 3D-друку з різдвяним вертепом" loading="lazy" width="800" height="800"></div>
+  </div>
+ </div>
 </section>
 
 <section class="sec badges" id="badges" data-anchor="znachky" aria-labelledby="bdh">
@@ -574,13 +604,20 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
   <div>
    <span class="tg">Значки</span>
    <h2 id="bdh">Значки з вашим дизайном</h2>
+   <p class="motto">Ваш світ. Ваші герої. Ваш стиль.</p>
+   <p>Ваш малюнок, родинне фото, іменний значок для першокласника чи символіка команди — перенесемо на значок будь-яку ідею. Збирайте власну колекцію або даруйте значок як маленький персональний подарунок.</p>
    <p>Закатні значки 25, 32 і 58 мм від 1 штуки, виготовлення 1 день. За вашим дизайном +15 грн. Від 20 шт. −5 %, від 50 шт. −10 %.</p>
    <ul class="prices" data-sec="badges"></ul>
    <div class="sizes" aria-label="Розміри значків у пропорції"><figure><i style="width:43px;height:43px"></i>25 мм</figure><figure><i style="width:55px;height:55px"></i>32 мм</figure><figure><i style="width:100px;height:100px"></i>58 мм</figure></div>
   </div>
-  <div class="pics">
+  <div class="bdpics">
+  <p class="swipe" aria-hidden="true"><span>Гортай далі</span><svg viewBox="0 0 54 34" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8C14 30 34 30 47 18"/><path d="M38 14L48 17L45 27"/></svg></p>
+  <div class="pics strip" aria-label="Фото: значки">
+   <div class="pic"><img src="img/bd3.jpg" alt="Значок 58 мм з власним малюнком серця в руці, поруч значки-смайли" loading="lazy" width="800" height="800"></div>
+   <div class="pic"><img src="img/bd4.jpg" alt="Іменний значок «Першокласниця» з іменем і назвою ліцею, дівчатками, книжкою й дзвоником" loading="lazy" width="700" height="700"></div>
    <div class="pic"><img src="img/bd1.jpg" alt="Закатні значки з власними фото та малюнками" loading="lazy"></div>
    <div class="pic"><img src="img/bd2.jpg" alt="Значки до Геловіну: гарбузи, привиди, кажани" loading="lazy"></div>
+  </div>
   </div>
  </div>
 </section>
@@ -593,7 +630,9 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
    <p>Крафт-папір, джутовий шпагат, сургуч або віск. Відбиток обираєте самі, безкоштовно. Або доповніть свій подарунок особливим штрихом — особистим листом у красивому конверті із сургучною печаткою.</p>
    <ul class="prices" data-sec="packaging"></ul>
   </div>
-  <div class="pics" aria-label="Фото: штампи, печатки й конверти">
+  <div class="pkpics">
+  <p class="swipe" aria-hidden="true"><span>Гортай далі</span><svg viewBox="0 0 54 34" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8C14 30 34 30 47 18"/><path d="M38 14L48 17L45 27"/></svg></p>
+  <div class="pics strip" aria-label="Фото: штампи, печатки й конверти">
    <div class="pic"><img src="img/pk4.jpg" alt="Набір металевих штампів для сургучних печаток: квіти, серця, сніжинка, бантик, лапка" loading="lazy" width="1400" height="700"></div>
    <div class="pic"><img src="img/pk5.jpg" alt="Червона сургучна печатка з ініціалом A поруч із латунним штампом" loading="lazy" width="900" height="900"></div>
    <div class="pic"><img src="img/pk6.jpg" alt="Крафтовий конверт із мідною сургучною печаткою For you" loading="lazy" width="900" height="900"></div>
@@ -602,6 +641,7 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
    <div class="pic"><img src="img/pk10.jpg" alt="Штампи з ініціалами: латинські літери з квітковим орнаментом" loading="lazy" width="900" height="900"></div>
    <div class="pic"><img src="img/pk9.jpg" alt="Сургучна печатка з відьмою на мітлі до Геловіну" loading="lazy" width="900" height="900"></div>
    <div class="pic"><img src="img/pk1.jpg" alt="Подарунок у крафт-папері з джутовим шпагатом і сургучною печаткою" loading="lazy"></div>
+  </div>
   </div>
  </div>
 </section>
@@ -1002,6 +1042,7 @@ addEventListener('scroll',barUpd,{passive:true});setTimeout(barUpd,300);addEvent
 var toast=document.getElementById('toast'),tt;function toastMsg(m){toast.textContent=m;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on')},2600)}
 [].forEach.call(document.querySelectorAll('.js-order'),function(a){a.addEventListener('click',function(e){e.preventDefault();if(menu.classList.contains('open'))openMenu(false);var pl=a.id==='cta'||a.id==='ctahw'?'hero':a.closest('.bar')?'sticky':a.closest('.menu')?'menu':(a.dataset.place||'other');window.fmOpenOrder&&fmOpenOrder({campaignId:window.FM_CAMPAIGN,occasion:CUR?CUR.title:'',place:pl})})});
 document.addEventListener('contextmenu',function(e){if(e.target.closest&&e.target.closest('img,video'))e.preventDefault()});
+[].forEach.call(document.querySelectorAll('.pics.strip'),function(st){var h=st.parentNode.querySelector('.swipe');if(!h)return;st.addEventListener('scroll',function(){if(st.scrollLeft>24)h.classList.add('gone')},{passive:true})});
 var tgo=document.getElementById('tgoff');if(CFG.telegram){var ta=document.createElement('a');ta.className='ic';ta.href=CFG.telegram;ta.target='_blank';ta.rel='noopener';ta.setAttribute('aria-label','Telegram');ta.innerHTML=tgo.innerHTML;tgo.replaceWith(ta)}else tgo.onclick=function(){toastMsg('Telegram тимчасово недоступний. Пишіть в Instagram або на пошту.')};
 lsw.addEventListener('click',function(){window.fmEvent&&fmEvent('light_toggle',{fm_state:lab.classList.contains('dark')?'off':'on'})});
 document.getElementById('doneMk').innerHTML=html.dataset.theme==='halloween'?'<svg viewBox="0 0 100 120" style="color:#fff;filter:drop-shadow(0 0 8px #c6ff00)"><use href="#gs" fill="#fff"/></svg>':mk();
