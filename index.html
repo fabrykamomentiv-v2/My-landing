@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var h=document.documentElement;h.className+=" fm-wait";try{var t=JSON.parse(localStorage.getItem("fm_theme")||"null"),d=new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Kyiv"}).format(new Date());if(t&&t.id&&t.day===d&&!/[?&]theme=/.test(location.search))h.setAttribute("data-theme",t.id)}catch(e){}})()</script>
 <!-- До запуску: noindex. Прибрати цей рядок на кроці 4.5 пам'ятки-інструкції -->
 <meta name="robots" content="noindex">
 <title>Фабрика моментів — подарункові набори й 3D-друк, Апостолове</title>
@@ -434,6 +435,16 @@ img,video{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-
 .fm-cookie p{margin:0 0 12px}.fm-cookie a{color:var(--fm-accent)}
 .fm-cookie-actions{display:flex;gap:8px}.fm-cookie-actions .fm-btn{flex:1;min-height:44px;padding:0 12px}
 .fm-toast{position:fixed;z-index:95;left:50%;transform:translateX(-50%);bottom:calc(24px + var(--fm-bottom-offset,0px) + env(safe-area-inset-bottom,0px));background:#3B2A24;color:#fff;padding:10px 16px;border-radius:14px;font:500 15px/1.3 var(--fm-font-body);max-width:90vw}
+/* 02.11.2026 — виправлення після перевірки */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.top{transition:opacity .25s}
+html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
+@keyframes fmShow{to{opacity:1}}
+@media(prefers-reduced-motion:reduce){html.fm-wait .top{opacity:1}}
+.hd.tight .ptr span{font-size:12px;max-width:84px}.hd.tight .ptr svg{display:none}.hd.tight2 .ptr{display:none}
+.pc.p0{cursor:pointer}
+.card.hl{animation:hl 1.8s ease-out}
+@keyframes hl{0%,40%{box-shadow:0 0 0 4px var(--fm-accent),0 10px 24px rgba(60,30,10,.12)}100%{box-shadow:0 10px 24px rgba(60,30,10,.12)}}
 </style>
 </head>
 <body>
@@ -844,7 +855,7 @@ function set(id,push){
  [].forEach.call(document.querySelectorAll('.candy,.pt,.say'),function(x){x.remove()});
  if(t.id==='brand')t.sl=brandBuild();
  ['#tsp','#tgh'].forEach(function(q){var e=document.querySelector(q);if(e)e.classList.remove('done')});
- document.getElementById('h1').textContent=t.id==='halloween'?'Формуємо емоції. Бережемо миті — подарунки на Геловін':(t.title||'');if(t.id==='halloween'){hwOn();return}else hwOff();
+ document.getElementById('h1').textContent=t.id==='halloween'?'Формуємо емоції. Бережемо миті — подарунки на Геловін':(t.title||'');if(t.id==='halloween'){hwOn();ready(t.id);return}else hwOff();
  document.getElementById('kicker').textContent=t.kicker;document.getElementById('h1').textContent=t.title;document.getElementById('lead').innerHTML=t.lead;hint.textContent='';
  var many=t.sl&&t.sl.length>1;
  var h='<div class="abox"><div class="arch" id="arch">';
@@ -864,7 +875,13 @@ function set(id,push){
  snow.hidden=t.fx!=='snow'||RM;if(!snow.hidden&&!snow.children.length)makeSnow();
  if(t.fx==='peek'&&!RM)window._pk=setInterval(peek,5000);
  if(many)startCar(t);else if(t.sl)caption(t,0);
+ ready(t.id);
 }
+function ready(id){html.classList.remove('fm-wait');if(!Q.get('theme'))try{localStorage.setItem('fm_theme',JSON.stringify({id:id,day:TODAY}))}catch(e){}setTimeout(fitHd,0)}
+/* Шапка завжди вміщується: якщо браузер збільшив шрифт (Instagram, великий системний шрифт), фраза біля меню стискається, а за крайньої потреби ховається */
+function fitHd(){var hd=document.querySelector('.hd'),bg=document.getElementById('burger'),sp=document.getElementById('ptrt');if(!hd||!bg)return;hd.classList.remove('tight','tight2');
+ var bad=function(){return bg.getBoundingClientRect().right>innerWidth-8||(sp&&sp.offsetHeight>44)};if(bad()){hd.classList.add('tight');if(bad())hd.classList.add('tight2')}}
+addEventListener('resize',function(){fitHd()});if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitHd()});
 function startCar(t){car.i=0;car.n=t.sl.length;show(0);
  document.getElementById('cp').onclick=function(){stopAuto();show(car.i-1)};document.getElementById('cn').onclick=function(){stopAuto();show(car.i+1)};
  var pz=document.getElementById('cpz');pz.onclick=function(){car.paused=!car.paused;pz.innerHTML=car.paused?IC.play:IC.pause;pz.setAttribute('aria-label',car.paused?'Відтворити':'Пауза');auto()};
@@ -892,11 +909,15 @@ function makeSnow(){for(var i=0;i<28;i++){var f=document.createElement('i');f.st
 
 /* --- Halloween --- */
 var top=document.getElementById('top'),shade=document.getElementById('shade'),hwRaf=null,deck=document.getElementById('deck'),di=0,dT=null,dPaused=RM;
-deck.innerHTML=HW.map(function(s,i){return '<figure class="pc" data-i="'+i+'"><div class="ph">'+(s.vid?'<video muted loop playsinline preload="none" poster="'+s.poster+'"><source src="'+s.src+'" type="video/mp4"></video>':'<img src="'+s.src+'" alt="Набір «'+s.alt+'»" loading="lazy">')+'</div><figcaption>'+(s.name||s.alt)+(s.vid?'<small>Вдень білі — у темряві світяться</small>':'')+'</figcaption></figure>'}).join('');
+deck.innerHTML=HW.map(function(s,i){return '<figure class="pc" data-i="'+i+'" data-pid="'+HWID[i]+'"><div class="ph">'+(s.vid?'<video muted loop playsinline preload="none" poster="'+s.poster+'"><source src="'+s.src+'" type="video/mp4"></video>':'<img src="'+s.src+'" alt="Набір «'+s.alt+'»" loading="lazy">')+'</div><figcaption>'+(s.name||s.alt)+(s.vid?'<small>Вдень білі — у темряві світяться</small>':'')+'</figcaption></figure>'}).join('');
 var pcs=deck.querySelectorAll('.pc');
 function dshow(i){di=(i+pcs.length)%pcs.length;pcs.forEach(function(p,k){var r=(k-di+pcs.length)%pcs.length;p.className='pc'+(r===0?' p0':r===1?' p1':r===pcs.length-1?' p2':r===2?' p3':r===pcs.length-2?' p4':'');p.setAttribute('aria-hidden',r!==0);var v=p.querySelector('video');if(v){if(r===0&&!RM)v.play().catch(function(){});else v.pause()}});document.getElementById('dcount').textContent=(di+1)+' / '+pcs.length}
 document.getElementById('dprev').onclick=function(){dPaused=true;dshow(di-1)};document.getElementById('dnext').onclick=function(){dPaused=true;dshow(di+1)};
-var dx0=null;deck.addEventListener('pointerdown',function(e){dx0=e.clientX});deck.addEventListener('pointerup',function(e){if(dx0!==null&&Math.abs(e.clientX-dx0)>40){dPaused=true;dshow(di+(e.clientX<dx0?1:-1))}dx0=null});
+var dx0=null;deck.addEventListener('pointerdown',function(e){dx0=e.clientX});var dSw=0;deck.addEventListener('pointerup',function(e){if(dx0!==null&&Math.abs(e.clientX-dx0)>40){dSw=Date.now();dPaused=true;dshow(di+(e.clientX<dx0?1:-1))}dx0=null});
+deck.addEventListener('click',function(e){var pc=e.target.closest('.pc.p0');if(!pc||Date.now()-dSw<500)return;var pid=pc.dataset.pid,p=PBY[pid],
+ c=document.querySelector('#cards .card[data-pid="'+pid+'"]'),tg=c||document.getElementById(p&&p.section==='3d'?'lab':'nabory');if(!tg)return;
+ tg.scrollIntoView({behavior:RM?'auto':'smooth',block:c?'center':'start'});if(c){c.classList.remove('hl');void c.offsetWidth;c.classList.add('hl')}
+ window.fmEvent&&fmEvent('hero_card_click',{fm_product:pid})});
 dshow(0);
 var pupils=[].slice.call(top.querySelectorAll('.pupil')),ghosts=[].slice.call(top.querySelectorAll('.gh')),W=1,H=1,cx=0,cy=0,tx=0,ty=0,last=-9999;
 function size(){var r=top.getBoundingClientRect();W=r.width;H=r.height;top.style.setProperty('--r',(W<700?190:280)+'px');shade.style.setProperty('--r',(W<700?190:280)+'px');if(!tx){tx=cx=W*.62;ty=cy=H*.46}}
@@ -966,7 +987,7 @@ lsw.onclick=function(){light(!lab.classList.contains('dark'));var tl=lm.querySel
 
 /* --- sticky bar after hero CTA, toast --- */
 var bar=document.getElementById('bar'),ordSec=document.getElementById('zamovyty');
-function barUpd(){var c=html.dataset.theme==='halloween'?document.getElementById('ctahw'):document.getElementById('cta'),r=c.getBoundingClientRect(),inForm=ordSec.getBoundingClientRect().top<innerHeight,on=r.width>0&&r.bottom<0&&!inForm;bar.classList.toggle('on',on);html.style.setProperty('--fm-bottom-offset',on?'76px':'0px')}
+function barUpd(){var c=html.dataset.theme==='halloween'?document.getElementById('ctahw'):document.getElementById('cta'),r=c.getBoundingClientRect(),inForm=ordSec.getBoundingClientRect().top<innerHeight,inl=false;[].forEach.call(document.querySelectorAll('.sec .js-order'),function(b){var q=b.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<innerHeight)inl=true});var on=r.width>0&&r.bottom<0&&!inForm&&!inl;bar.classList.toggle('on',on);html.style.setProperty('--fm-bottom-offset',on?'76px':'0px')}
 addEventListener('scroll',barUpd,{passive:true});setTimeout(barUpd,300);addEventListener('load',barUpd);setInterval(barUpd,800);addEventListener('resize',barUpd);
 var toast=document.getElementById('toast'),tt;function toastMsg(m){toast.textContent=m;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on')},2600)}
 [].forEach.call(document.querySelectorAll('.js-order'),function(a){a.addEventListener('click',function(e){e.preventDefault();if(menu.classList.contains('open'))openMenu(false);var pl=a.id==='cta'||a.id==='ctahw'?'hero':a.closest('.bar')?'sticky':a.closest('.menu')?'menu':(a.dataset.place||'other');window.fmOpenOrder&&fmOpenOrder({campaignId:window.FM_CAMPAIGN,occasion:CUR?CUR.title:'',place:pl})})});
