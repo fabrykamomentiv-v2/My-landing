@@ -361,7 +361,7 @@ img,video{display:block;max-width:100%}
 .skip{position:absolute;left:-9999px;top:8px;z-index:200;background:#fff;color:#3B2A24;padding:10px 16px;border-radius:12px}.skip:focus{left:8px}
 .wide{max-width:1180px;margin:0 auto}.narrow{max-width:820px}
 .sets{background:#FFF6EA}.sets .tg{background:#FFC233;color:#3B2A24}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:22px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;margin-top:22px}
 .card{position:relative;display:flex;flex-direction:column;text-align:left;background:#fff;border:0;border-radius:24px;overflow:hidden;box-shadow:0 10px 24px rgba(60,30,10,.12);cursor:pointer;padding:0;transition:transform .2s}
 .card:hover{transform:translateY(-3px)}
 .card .im{aspect-ratio:1;background:#F1DCC0;position:relative}.card img{width:100%;height:100%;object-fit:cover}
@@ -472,6 +472,59 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
  .pics.strip::-webkit-scrollbar{display:none}
  .pics.strip .pic,.pics.strip .pic:first-child{flex:0 0 72%;max-width:320px;aspect-ratio:1;grid-column:auto;scroll-snap-align:center}
 }
+/* 02.11.2026 — пакет 3: каталог свят, картки, шторка набору */
+.ctabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:18px calc(-1*clamp(16px,5vw,64px)) 0;padding:2px clamp(16px,5vw,64px) 6px}
+.ctabs[hidden]{display:none}.ctabs::-webkit-scrollbar{display:none}
+.ctab{flex:0 0 auto;min-height:44px;padding:0 18px;border-radius:999px;border:2px solid #E3CFC0;background:#fff;font:700 15px/1 var(--fm-font-body);color:var(--fm-text);cursor:pointer;white-space:nowrap}
+.ctab.on{background:#3B2A24;border-color:#3B2A24;color:#fff}
+.card{cursor:default}
+.card .im{display:block;width:100%;border:0;padding:0;cursor:pointer;aspect-ratio:1;background:#F1DCC0;position:relative;overflow:hidden}
+.card .cnt{position:absolute;right:10px;top:10px;background:rgba(59,42,36,.8);color:#fff;font:700 12px/1 var(--fm-font-body);padding:6px 10px;border-radius:999px}
+.card .cn{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.st{align-self:flex-start;display:inline-block;font:700 12.5px/1.25 var(--fm-font-body);padding:5px 10px;border-radius:999px;background:#DDF3E8;color:#0b5a3f}
+.st-soon{background:#FFEBC2;color:#6b4100}.st-past{background:#EFE6DE;color:#6E5A4E}
+.acts2{display:flex;gap:8px;margin-top:auto;padding-top:10px}
+.acts2 button{flex:1;min-width:0;min-height:44px;padding:0 8px;border-radius:999px;font:700 15px/1 var(--fm-font-body);cursor:pointer}
+.acts2 .more{border:2px solid #3B2A24;background:#fff;color:#3B2A24}
+.acts2 .buy{border:0;background:var(--fm-accent);color:#fff}
+.cmore{display:block;margin:18px auto 0;min-height:48px;padding:0 24px;border-radius:999px;border:2px solid #3B2A24;background:#fff;color:#3B2A24;font:700 16px var(--fm-font-body);cursor:pointer}
+.cmore[hidden]{display:none}
+.nsheet{position:fixed;inset:0;z-index:92}
+.nsheet[hidden]{display:none}
+.nback{position:absolute;inset:0;background:rgba(40,20,10,.55);animation:nfade .2s}
+.npanel{position:absolute;left:0;right:0;bottom:0;max-height:92svh;overflow:auto;overscroll-behavior:contain;background:#FFF6EA;color:#3B2A24;border-radius:28px 28px 0 0;padding:0 18px;animation:nup .28s cubic-bezier(.2,.9,.3,1);transition:transform .2s}
+@keyframes nup{from{transform:translateY(40px);opacity:0}}@keyframes nfade{from{opacity:0}}
+.ngrip{display:flex;justify-content:center;padding:10px 0 6px;position:sticky;top:0;background:#FFF6EA;z-index:2}
+.ngrip i{width:44px;height:5px;border-radius:5px;background:#cbb8a6}
+.nhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.nhead h3{font:700 clamp(20px,2.4vw,26px)/1.2 var(--fm-font-head);margin:0}
+.nclose{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:2px solid #3B2A24;background:none;color:#3B2A24;font-size:24px;line-height:1;cursor:pointer}
+.ngal{position:relative}
+.ntrack{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:22px;background:#F1DCC0;touch-action:pan-x pan-y}
+.ntrack::-webkit-scrollbar{display:none}
+.nsl{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:1}
+.nsl img{width:100%;height:100%;object-fit:cover}
+.ndots{display:flex;gap:6px;justify-content:center;margin-top:10px;min-height:8px}
+.ndots i{width:8px;height:8px;border-radius:50%;background:#3B2A24;opacity:.25}.ndots i.on{opacity:1}
+.nprev,.nnext{display:none;position:absolute;top:calc(50% - 30px);width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.94);box-shadow:0 4px 12px rgba(60,30,10,.2);cursor:pointer;font:700 24px/1 var(--fm-font-body);color:#3B2A24}
+.nprev{left:10px}.nnext{right:10px}
+.ninfo{margin-top:14px}
+.ninfo .npr{font:700 22px/1.2 var(--fm-font-head);color:var(--fm-accent);margin:0 0 10px}
+.ninfo h4{font:700 17px var(--fm-font-body);margin:16px 0 6px}
+.ninfo ul{margin:0;padding-left:20px;line-height:1.55;font-size:16px}.ninfo li{margin:3px 0}
+.ninfo p{margin:10px 0 0;font-size:15.5px;line-height:1.5;color:#6E5A4E}.ninfo .n3{font-weight:700;color:#3B2A24}
+.nacts{position:sticky;bottom:0;display:flex;gap:10px;margin:18px -18px 0;padding:12px 18px calc(14px + env(safe-area-inset-bottom,0px));background:#FFF6EA;box-shadow:0 -10px 16px rgba(255,246,234,.95)}
+.nacts .btn{flex:1;min-width:0;min-height:56px;padding:0 14px;font-size:17px;white-space:nowrap}
+.nshare{flex:0 0 auto;min-height:56px;padding:0 16px;border-radius:999px;border:2px solid #3B2A24;background:#fff;color:#3B2A24;font:700 15px var(--fm-font-body);cursor:pointer}
+@media(min-width:900px){
+ .npanel{left:50%;top:50%;right:auto;bottom:auto;transform:translate(-50%,-50%)!important;width:min(940px,92vw);max-height:88vh;border-radius:28px;padding:0 28px;animation:nfade .2s}
+ .ngrip{visibility:hidden;height:20px;padding:0}
+ .nbody{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px;align-items:start}
+ .ninfo{margin-top:0}
+ .nprev,.nnext{display:grid;place-items:center}.nsheet.one .nprev,.nsheet.one .nnext{display:none}
+ .nacts{margin:20px -28px 0;padding:14px 28px 22px}
+}
+@media(prefers-reduced-motion:reduce){.npanel,.nback{animation:none}}
 </style>
 </head>
 <body>
@@ -544,8 +597,10 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
  <div class="wide">
   <span class="tg">Набори</span>
   <h2 id="nbh">Набори до свята</h2>
-  <p id="nbp">Натисніть на набір — відкриється форма, де його вже обрано.</p>
+  <p id="nbp">Оберіть свято. «Детальніше» — повний склад і всі фото набору.</p>
+  <div class="ctabs" id="ctabs" role="tablist" aria-label="Свята" hidden></div>
   <div class="cards" id="cards"></div>
+  <button type="button" class="cmore" id="cmore" hidden></button>
  </div>
 </section>
 
@@ -735,7 +790,7 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
  <div class="back" data-close></div>
  <div class="sheet">
   <div class="mhead"><b>Меню</b><button class="mclose" data-close aria-label="Закрити меню">×</button></div>
-  <a class="item" href="#nabory">Набори<i style="--c:#FFC233"></i></a>
+  <a class="item" href="#nabory">Усі набори<i style="--c:#FFC233"></i></a>
   <a class="item" href="#skoro">Скоро<i style="--c:#FFC233"></i></a>
   <a class="item" href="#lab">3D-друк<i style="--c:#6C3BFF"></i></a>
   <a class="item" href="#badges">Значки<i style="--c:#3DDBB0"></i></a>
@@ -749,6 +804,18 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
 </div>
 
 <div class="bar" id="bar"><a class="btn js-order" href="#">Замовити момент</a></div>
+<div class="nsheet" id="nsheet" hidden role="dialog" aria-modal="true" aria-labelledby="nsT">
+ <div class="nback" data-nclose></div>
+ <div class="npanel" id="npanel">
+  <div class="ngrip" id="ngrip" aria-hidden="true"><i></i></div>
+  <div class="nhead" id="nhead"><h3 id="nsT"></h3><button type="button" class="nclose" data-nclose aria-label="Закрити">×</button></div>
+  <div class="nbody">
+   <div class="ngal"><div class="ntrack" id="ntrack" aria-roledescription="галерея"></div><button type="button" class="nprev" id="nprev" aria-label="Попереднє фото">‹</button><button type="button" class="nnext" id="nnext" aria-label="Наступне фото">›</button><div class="ndots" id="ndots" aria-hidden="true"></div></div>
+   <div class="ninfo" id="ninfo"></div>
+  </div>
+  <div class="nacts"><button type="button" class="btn" id="nbuy">Замовити цей набір</button><button type="button" class="nshare" id="nshare">Поділитися</button></div>
+ </div>
+</div>
 <div class="toast" id="toast" role="status"></div>
 <div class="done" id="done" hidden role="dialog" aria-modal="true" aria-labelledby="doneH">
  <div class="done-card">
@@ -824,6 +891,9 @@ var MEDIA={};function indexM(){MEDIA={};(DATA.media||[]).forEach(function(m){if(
 function cld(u,w){return /res\.cloudinary\.com\/.+\/upload\//.test(u)&&!/\/upload\/[a-z]{1,2}_/.test(u)?u.replace('/upload/','/upload/f_auto,q_auto,c_limit,w_'+w+'/'):u}
 function photoOf(id,w){var m=MEDIA[id];return m&&m[0]?cld(m[0].url,w||800):(IMG[id]?'img/'+IMG[id]:'')}
 window.fmPhotoOf=photoOf;
+/* Галерея набору: фото з таблиці «Матеріали» (Cloudinary), інакше — з папки img */
+var GAL={'HW-01':['hw01.jpg','hw01-2.jpg'],'HW-02':['hw02.jpg','hw02-2.jpg'],'HW-04':['hw04.jpg','hw04-2.jpg','hw04-3.jpg'],'WN-06':['wn06.jpg','wn06-2.jpg'],'3D-05':['3d05.jpg','3d05-2.jpg','3d05-3.jpg','3d05-4.jpg'],'3D-06':['3d06.jpg','3d06-2.jpg'],'GH-02':['b2.jpg','gh3.jpg']};
+function photosOf(id,w){var m=MEDIA[id];if(m&&m.length)return m.map(function(x){return{src:cld(x.url,w||1000),alt:x.alt||''}});var g=GAL[id]||(IMG[id]?[IMG[id]]:[]);return g.map(function(f){return{src:'img/'+f,alt:''}})}
 var IMG={'HW-01':'hw01.jpg','HW-02':'hw02.jpg','HW-03':'hw03.jpg','HW-04':'hw04.jpg','HW-05':'hw05.jpg','HW-06':'hw06.jpg','HW-07':'hw07.jpg','HW-08':'hw08.jpg','HW-09':'hw09.jpg','AD-01':'ad01.jpg','WN-01':'z6.jpg','WN-02':'wn02.jpg','WN-03':'wn03.jpg','WN-04':'wn04.jpg','WN-05':'wn05.jpg','WN-06':'wn06.jpg','WN-07':'wn07.jpg','3D-05':'3d05.jpg','3D-06':'3d06.jpg','EA-01':'v1.jpg','GH-02':'b2.jpg'};
 indexP();
 function money(v){if(v===''||v==null)return '';var n=Number(v);return 'від '+(n%1?String(n).replace('.',','):n)+' грн'}
@@ -964,7 +1034,7 @@ var pcs=deck.querySelectorAll('.pc');
 function dshow(i){di=(i+pcs.length)%pcs.length;pcs.forEach(function(p,k){var r=(k-di+pcs.length)%pcs.length;p.className='pc'+(r===0?' p0':r===1?' p1':r===pcs.length-1?' p2':r===2?' p3':r===pcs.length-2?' p4':'');p.setAttribute('aria-hidden',r!==0);var v=p.querySelector('video');if(v){if(r===0&&!RM)v.play().catch(function(){});else v.pause()}});document.getElementById('dcount').textContent=(di+1)+' / '+pcs.length}
 document.getElementById('dprev').onclick=function(){dPaused=true;dshow(di-1)};document.getElementById('dnext').onclick=function(){dPaused=true;dshow(di+1)};
 var dx0=null;deck.addEventListener('pointerdown',function(e){dx0=e.clientX});var dSw=0;deck.addEventListener('pointerup',function(e){if(dx0!==null&&Math.abs(e.clientX-dx0)>40){dSw=Date.now();dPaused=true;dshow(di+(e.clientX<dx0?1:-1))}dx0=null});
-deck.addEventListener('click',function(e){var pc=e.target.closest('.pc.p0');if(!pc||Date.now()-dSw<500)return;var pid=pc.dataset.pid,p=PBY[pid],
+deck.addEventListener('click',function(e){var pc=e.target.closest('.pc.p0');if(!pc||Date.now()-dSw<500)return;var pid=pc.dataset.pid,p=PBY[pid];if(openSet(pid,'hero'))return;var
  c=document.querySelector('#cards .card[data-pid="'+pid+'"]'),tg=c||document.getElementById(p&&p.section==='3d'?'lab':'nabory');if(!tg)return;
  tg.scrollIntoView({behavior:RM?'auto':'smooth',block:c?'center':'start'});if(c){c.classList.remove('hl');void c.offsetWidth;c.classList.add('hl')}
  window.fmEvent&&fmEvent('hero_card_click',{fm_product:pid})});
@@ -996,14 +1066,43 @@ document.getElementById('spider').addEventListener('click',function(){done('#tsp
 /* --- розділи з даних: набори, скоро, ціни, питання --- */
 var CUR=null;
 function fmtD(d){var m=['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'];var p=d.split('-');return +p[2]+' '+m[+p[1]-1]}
-function card(p,cid){var im=photoOf(p.item_id,600);return '<button class="card js-card" type="button" data-pid="'+esc(p.item_id)+'" data-cid="'+esc(cid||'')+'"><span class="im">'+(im?'<img src="'+esc(im)+'" alt="Набір «'+esc(p.title)+'»" loading="lazy" width="600" height="600">':'')+'</span><span class="bd"><b>'+esc(p.title)+'</b>'+(p.price_from!==''&&p.price_from!=null?'<span class="pr">'+money(p.price_from)+'</span>':'<span class="pr">Ціну уточнимо</span>')+(p.contents?'<span class="cn">'+esc(String(p.contents).split(';').slice(0,3).join(';'))+(String(p.contents).split(';').length>3?'…':'')+'</span>':'')+(p.size?'<span class="cn">Розмір: '+esc(p.size)+'</span>':'')+'<span class="go">Замовити →</span></span></button>'}
+var SHORT={halloween:'Геловін',advent:'Адвент',mykolai:'Миколай',rizdvo:'Різдво',novyirik:'Новий рік',velykden:'Великдень',stritennia:'Стрітення',vesna:'Весна',maslyana:'Масляна',triitsia:'Трійця',kupala:'Купала',spas:'Спас',pokrova:'Покрова'};
+function shortT(c){return SHORT[String(c.campaign_id).replace(/\d+$/,'')]||c.title}
+function cEnd(c){var e=c.date_first||'';if(c.hero_manual_until&&c.hero_manual_until>e)e=c.hero_manual_until;return e}
+function cState(c){if(c.sales_start&&c.sales_start>TODAY)return 'soon';if(cEnd(c)&&cEnd(c)<TODAY)return 'past';return 'live'}
+/* Свята з однаковим набором товарів (Миколай, Різдво, Новий рік) — одна вкладка */
+function groups(){var by={},out=[];
+ DATA.campaigns.filter(function(c){return c.active==='так'&&c.campaign_id!=='always'}).forEach(function(c){var it=campItems(c.campaign_id);if(!it.length)return;
+  var key=it.map(function(p){return p.item_id}).join(',');if(!by[key]){by[key]={key:key,camps:[],items:it};out.push(by[key])}by[key].camps.push(c)});
+ out.forEach(function(g){g.camps.sort(function(a,b){return(a.date_first||'')<(b.date_first||'')?-1:1});var st=g.camps.map(cState);
+  g.state=st.indexOf('live')>=0?'live':st.indexOf('soon')>=0?'soon':'past';
+  g.main=g.camps.filter(function(c){return cState(c)===g.state})[0]||g.camps[0];
+  g.label=g.camps.map(shortT).filter(function(x,k,a){return a.indexOf(x)===k}).join(' · ');
+  g.from=g.state==='soon'?g.camps.map(function(c){return c.sales_start}).filter(Boolean).sort()[0]:''});
+ var rank={live:0,soon:1,past:2};
+ out.sort(function(a,b){return rank[a.state]-rank[b.state]||(a.state==='past'?(cEnd(a.main)>cEnd(b.main)?-1:1):((a.main.date_first||'')<(b.main.date_first||'')?-1:1))});
+ return out}
+function stTxt(g){return g.state==='live'?'У продажу':g.state==='soon'?'Замовлення з '+fmtD(g.from):'Сезон завершено — повторимо на запит'}
+function buyTxt(g){return g&&g.state==='soon'?'Заздалегідь':g&&g.state==='past'?'Запитати':'Замовити'}
+function partsOf(p){return p.contents?String(p.contents).split(';').map(function(x){return x.trim()}).filter(Boolean):[]}
+function priceOf(p){return p.price_from!==''&&p.price_from!=null?money(p.price_from):'Ціну уточнимо'}
+function card(p,g){var id=esc(p.item_id),im=photoOf(p.item_id,600),n=photosOf(p.item_id).length,pt=partsOf(p);
+ return '<article class="card" data-pid="'+id+'"><button type="button" class="im js-more" data-pid="'+id+'" aria-label="Детальніше: «'+esc(p.title)+'»">'+(im?'<img src="'+esc(im)+'" alt="Набір «'+esc(p.title)+'»" loading="lazy" width="600" height="600">':'')+(n>1?'<span class="cnt">'+n+' фото</span>':'')+'</button>'
+ +'<div class="bd">'+(g?'<span class="st st-'+g.state+'">'+esc(stTxt(g))+'</span>':'')+'<b>'+esc(p.title)+'</b><span class="pr">'+priceOf(p)+'</span>'
+ +(pt.length?'<span class="cn">'+esc(pt.join('; '))+'</span>':'')
+ +'<div class="acts2"><button type="button" class="more js-more" data-pid="'+id+'">Детальніше</button><button type="button" class="buy js-card" data-pid="'+id+'" data-cid="'+esc(g?g.main.campaign_id:'')+'" data-t="'+esc(g?g.main.title:'')+'">'+buyTxt(g)+'</button></div></div></article>'}
+var GR=[],SEL='',ALL=false;
+function renderCat(){var tabs=document.getElementById('ctabs'),g=GR.filter(function(x){return x.key===SEL})[0];
+ tabs.innerHTML=GR.map(function(x){return '<button type="button" role="tab" class="ctab'+(x.key===SEL?' on':'')+'" aria-selected="'+(x.key===SEL)+'" data-k="'+esc(x.key)+'">'+esc(x.label)+'</button>'}).join('');
+ tabs.hidden=GR.length<2;
+ document.getElementById('nbh').textContent=g?'Набори: '+g.label:'Набори до свят';
+ var list=g?g.items:[],lim=ALL?999:6;
+ document.getElementById('cards').innerHTML=list.length?list.slice(0,lim).map(function(p){return card(p,g)}).join(''):'<p class="empty">Набори до найближчого свята з’являться тут найближчим часом. Подивіться розділ «Скоро» або напишіть, що хочете, — зберемо під ваш привід.</p>';
+ var mb=document.getElementById('cmore');mb.hidden=list.length<=lim;mb.textContent='Показати всі набори ('+list.length+')'}
 function buildSections(){
- var c=CUR,list=[],cid='',title='Набори до свята',lead='Натисніть на набір — відкриється форма, де його вже обрано.';
- if(c){list=campItems(c.campaign_id);cid=c.campaign_id;title='Набори: '+c.title}
- if(!list.length){var live=DATA.campaigns.filter(function(x){return x.active==='так'&&x.sales_start&&x.sales_start<=TODAY&&x.date_first>=TODAY&&campItems(x.campaign_id).length}).sort(function(a,b){return a.date_first<b.date_first?-1:1});
-  if(live[0]){list=campItems(live[0].campaign_id);cid=live[0].campaign_id;title='Набори: '+live[0].title}}
- document.getElementById('nbh').textContent=title;document.getElementById('nbp').textContent=lead;
- document.getElementById('cards').innerHTML=list.length?list.map(function(p){return card(p,cid)}).join(''):'<p class="empty">Набори до найближчого свята з’являться тут найближчим часом. Подивіться розділ «Скоро» або напишіть, що хочете, — зберемо під ваш привід.</p>';
+ var cid=CUR?CUR.campaign_id:'';GR=groups();
+ if(!GR.some(function(g){return g.key===SEL}))SEL=(GR.filter(function(g){return g.camps.some(function(c){return c.campaign_id===cid})})[0]||GR.filter(function(g){return g.state==='live'})[0]||GR[0]||{}).key||'';
+ renderCat();
  window.FM_CAMPAIGN=cid;
  var soon=DATA.campaigns.filter(function(x){return x.active==='так'&&x.campaign_id!=='always'&&x.date_first&&x.date_first>TODAY&&x.campaign_id!==cid}).sort(function(a,b){return a.date_first<b.date_first?-1:1}).slice(0,4);
  document.getElementById('soonl').innerHTML=soon.map(function(x){return '<li><b>'+esc(x.title)+'</b><span>'+fmtD(x.date_first)+(x.sales_start>TODAY?' · замовлення з '+fmtD(x.sales_start):' · вже приймаємо замовлення')+'</span><button type="button" class="js-soon" data-cid="'+esc(x.campaign_id)+'" data-t="'+esc(x.title)+'">Замовити заздалегідь</button></li>'}).join('');
@@ -1012,7 +1111,10 @@ function buildSections(){
  document.getElementById('qa').innerHTML=faq.map(function(f){return '<details><summary>'+esc(f.question)+'</summary><p>'+esc(f.answer)+'</p></details>'}).join('');
 }
 document.addEventListener('click',function(e){
- var k=e.target.closest&&e.target.closest('.js-card');if(k){e.preventDefault();var pid=k.dataset.pid,p=PBY[pid];window.fmOpenOrder&&fmOpenOrder({productId:pid,campaignId:k.dataset.cid||window.FM_CAMPAIGN,occasion:CUR?CUR.title:'',place:'card'});return}
+ var mo=e.target.closest&&e.target.closest('.js-more');if(mo){e.preventDefault();openSet(mo.dataset.pid,'card');return}
+ var tb=e.target.closest&&e.target.closest('.ctab');if(tb){SEL=tb.dataset.k;ALL=false;renderCat();var t2=document.querySelector('.ctab.on');if(t2&&t2.scrollIntoView)t2.scrollIntoView({block:'nearest',inline:'center'});window.fmEvent&&fmEvent('catalog_tab',{fm_tab:t2?t2.textContent:''});return}
+ if(e.target.id==='cmore'){ALL=true;renderCat();return}
+ var k=e.target.closest&&e.target.closest('.js-card');if(k){e.preventDefault();var pid=k.dataset.pid;window.fmOpenOrder&&fmOpenOrder({productId:pid,campaignId:k.dataset.cid||window.FM_CAMPAIGN,occasion:k.dataset.t||(CUR?CUR.title:''),place:'card'});return}
  var so=e.target.closest&&e.target.closest('.js-soon');if(so){window.fmOpenOrder&&fmOpenOrder({other:1,campaignId:so.dataset.cid,occasion:so.dataset.t,place:'soon'})}
 });
 
@@ -1037,12 +1139,53 @@ lsw.onclick=function(){light(!lab.classList.contains('dark'));var tl=lm.querySel
 
 /* --- sticky bar after hero CTA, toast --- */
 var bar=document.getElementById('bar'),ordSec=document.getElementById('zamovyty');
-function barUpd(){var c=html.dataset.theme==='halloween'?document.getElementById('ctahw'):document.getElementById('cta'),r=c.getBoundingClientRect(),inForm=ordSec.getBoundingClientRect().top<innerHeight,inl=false;[].forEach.call(document.querySelectorAll('.sec .js-order'),function(b){var q=b.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<innerHeight)inl=true});var on=r.width>0&&r.bottom<0&&!inForm&&!inl;bar.classList.toggle('on',on);html.style.setProperty('--fm-bottom-offset',on?'76px':'0px')}
+function barUpd(){var c=html.dataset.theme==='halloween'?document.getElementById('ctahw'):document.getElementById('cta'),r=c.getBoundingClientRect(),inForm=ordSec.getBoundingClientRect().top<innerHeight,inl=false;[].forEach.call(document.querySelectorAll('.sec .js-order,#cards .acts2'),function(b){var q=b.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<innerHeight)inl=true});var on=r.width>0&&r.bottom<0&&!inForm&&!inl;bar.classList.toggle('on',on);html.style.setProperty('--fm-bottom-offset',on?'76px':'0px')}
 addEventListener('scroll',barUpd,{passive:true});setTimeout(barUpd,300);addEventListener('load',barUpd);setInterval(barUpd,800);addEventListener('resize',barUpd);
 var toast=document.getElementById('toast'),tt;function toastMsg(m){toast.textContent=m;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on')},2600)}
 [].forEach.call(document.querySelectorAll('.js-order'),function(a){a.addEventListener('click',function(e){e.preventDefault();if(menu.classList.contains('open'))openMenu(false);var pl=a.id==='cta'||a.id==='ctahw'?'hero':a.closest('.bar')?'sticky':a.closest('.menu')?'menu':(a.dataset.place||'other');window.fmOpenOrder&&fmOpenOrder({campaignId:window.FM_CAMPAIGN,occasion:CUR?CUR.title:'',place:pl})})});
 document.addEventListener('contextmenu',function(e){if(e.target.closest&&e.target.closest('img,video'))e.preventDefault()});
 [].forEach.call(document.querySelectorAll('.pics.strip'),function(st){var h=st.parentNode.querySelector('.swipe');if(!h)return;st.addEventListener('scroll',function(){if(st.scrollLeft>24)h.classList.add('gone')},{passive:true})});
+/* --- шторка набору --- */
+var NS=document.getElementById('nsheet'),NP=document.getElementById('npanel'),NT=document.getElementById('ntrack'),NOW=null,NPUSH=false,NFOC=null;
+function openSet(pid,from){var p=PBY[pid];if(!p)return false;
+ var g=GR.filter(function(x){return x.items.some(function(i){return i.item_id===pid})})[0];NOW={p:p,g:g};NFOC=document.activeElement;
+ document.getElementById('nsT').textContent=p.title;
+ var ph=photosOf(pid,1000);
+ NT.innerHTML=ph.length?ph.map(function(f,i){return '<div class="nsl"><img src="'+esc(f.src)+'" alt="'+esc(f.alt||('Набір «'+p.title+'»'+(ph.length>1?', фото '+(i+1)+' з '+ph.length:'')))+'"'+(i?' loading="lazy"':'')+'></div>'}).join(''):'<div class="nsl"></div>';
+ document.getElementById('ndots').innerHTML=ph.length>1?ph.map(function(f,i){return '<i'+(i?'':' class="on"')+'></i>'}).join(''):'';
+ NS.classList.toggle('one',ph.length<2);
+ var pt=partsOf(p);
+ document.getElementById('ninfo').innerHTML='<p class="npr">'+priceOf(p)+'</p>'+(g?'<span class="st st-'+g.state+'">'+esc(stTxt(g))+'</span>':'')
+  +(pt.length?'<h4>Склад</h4><ul>'+pt.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')
+  +(p.size?'<p><b>Розмір:</b> '+esc(p.size)+'</p>':'')+(p.price_note?'<p>'+esc(p.price_note)+'</p>':'')
+  +(p.lead_time?'<p><b>Строк виготовлення:</b> '+esc(p.lead_time)+'</p>':'')+(p.personalization?'<p><b>Персоналізація:</b> '+esc(p.personalization)+'</p>':'')
+  +(p.not_under_3==='так'?'<p class="n3">Не для дітей до 3 років: дрібні деталі.</p>':'')
+  +(p.section==='sets'?'<p>Склад можна змінити в межах коробки. Остаточну суму погоджуємо в месенджері до оплати.</p>':'<p>Остаточну суму погоджуємо в месенджері до оплати.</p>');
+ var sw=p.section==='sets'?'набір':'';document.getElementById('nbuy').textContent=g&&g.state==='soon'?'Замовити заздалегідь':g&&g.state==='past'?'Запитати про '+(sw||'виріб'):(sw?'Замовити цей набір':'Замовити');
+ NS.hidden=false;NT.scrollLeft=0;NP.scrollTop=0;NP.style.transform='';document.body.style.overflow='hidden';
+ if(location.hash!=='#nabir-'+pid){try{history.pushState({fmSet:pid},'','#nabir-'+pid);NPUSH=true}catch(e){}}
+ setTimeout(function(){var c=NS.querySelector('.nclose');if(c)c.focus({preventScroll:true})},60);
+ window.fmEvent&&fmEvent('set_open',{fm_product:pid,fm_place:from||''});return true}
+function hideSet(){if(NS.hidden)return;NS.hidden=true;document.body.style.overflow='';NT.innerHTML='';if(NFOC&&NFOC.focus)try{NFOC.focus({preventScroll:true})}catch(e){}}
+function closeSet(){if(NS.hidden)return;if(NPUSH){NPUSH=false;hideSet();history.back();return}hideSet();if(/^#nabir-/.test(location.hash))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
+addEventListener('popstate',function(){if(!NS.hidden&&!/^#nabir-/.test(location.hash)){NPUSH=false;hideSet()}});
+addEventListener('hashchange',function(){var m=/^#nabir-(.+)$/.exec(location.hash);if(m&&NS.hidden)openSet(decodeURIComponent(m[1]),'link')});
+[].forEach.call(NS.querySelectorAll('[data-nclose]'),function(b){b.addEventListener('click',closeSet)});
+addEventListener('keydown',function(e){if(e.key==='Escape'&&!NS.hidden)closeSet()});
+NS.addEventListener('keydown',function(e){if(e.key!=='Tab')return;var f=NS.querySelectorAll('button:not([hidden])'),a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}});
+NT.addEventListener('scroll',function(){var i=Math.round(NT.scrollLeft/Math.max(1,NT.clientWidth));[].forEach.call(document.querySelectorAll('#ndots i'),function(d,k){d.classList.toggle('on',k===i)})},{passive:true});
+document.getElementById('nprev').onclick=function(){NT.scrollBy({left:-NT.clientWidth,behavior:RM?'auto':'smooth'})};
+document.getElementById('nnext').onclick=function(){NT.scrollBy({left:NT.clientWidth,behavior:RM?'auto':'smooth'})};
+(function(){var y0=null,dy=0;function st(e){if(NP.scrollTop>0)return;y0=e.touches[0].clientY;dy=0}
+ function mv(e){if(y0===null)return;dy=e.touches[0].clientY-y0;if(dy>0)NP.style.transform='translateY('+dy+'px)'}
+ function en(){if(y0===null)return;y0=null;if(dy>90)closeSet();else NP.style.transform=''}
+ ['ngrip','nhead'].forEach(function(id){var el=document.getElementById(id);el.addEventListener('touchstart',st,{passive:true});el.addEventListener('touchmove',mv,{passive:true});el.addEventListener('touchend',en)})})();
+document.getElementById('nbuy').onclick=function(){var p=NOW.p,g=NOW.g;closeSet();setTimeout(function(){window.fmOpenOrder&&fmOpenOrder({productId:p.item_id,campaignId:g?g.main.campaign_id:window.FM_CAMPAIGN,occasion:g?g.main.title:(CUR?CUR.title:''),place:'sheet'})},150)};
+document.getElementById('nshare').onclick=function(){var p=NOW.p,u=location.origin+location.pathname+'#nabir-'+encodeURIComponent(p.item_id);
+ window.fmEvent&&fmEvent('share',{fm_product:p.item_id});
+ if(navigator.share){navigator.share({title:'Фабрика моментів — '+p.title,text:'Подивись цей набір: «'+p.title+'»',url:u}).catch(function(){});return}
+ var ok=function(){toastMsg('Посилання на набір скопійовано')};
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(ok,function(){prompt('Скопіюйте посилання:',u)});else prompt('Скопіюйте посилання:',u)};
 var tgo=document.getElementById('tgoff');if(CFG.telegram){var ta=document.createElement('a');ta.className='ic';ta.href=CFG.telegram;ta.target='_blank';ta.rel='noopener';ta.setAttribute('aria-label','Telegram');ta.innerHTML=tgo.innerHTML;tgo.replaceWith(ta)}else tgo.onclick=function(){toastMsg('Telegram тимчасово недоступний. Пишіть в Instagram або на пошту.')};
 lsw.addEventListener('click',function(){window.fmEvent&&fmEvent('light_toggle',{fm_state:lab.classList.contains('dark')?'off':'on'})});
 document.getElementById('doneMk').innerHTML=html.dataset.theme==='halloween'?'<svg viewBox="0 0 100 120" style="color:#fff;filter:drop-shadow(0 0 8px #c6ff00)"><use href="#gs" fill="#fff"/></svg>':mk();
@@ -1060,6 +1203,7 @@ try{var c0=JSON.parse(localStorage.getItem(LSK)||'null');
   if(c0.day!==TODAY)(c0.d.campaigns||[]).forEach(function(c){delete c.hero_now});
   DATA=norm(c0.d);indexP()}}catch(e){}
 start();
+(function(){var m=/^#nabir-(.+)$/.exec(location.hash);if(m)openSet(decodeURIComponent(m[1]),'link')})();
 if(CFG.catalogUrl){
  fetch(CFG.catalogUrl).then(function(r){return r.json()}).then(function(d){if(!(d&&d.products&&d.products.length&&d.campaigns))return;
   try{localStorage.setItem(LSK,JSON.stringify({t:Date.now(),day:TODAY,d:d}))}catch(e){}
