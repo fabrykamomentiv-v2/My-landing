@@ -15,8 +15,6 @@
 <meta name="theme-color" content="#FFF6EA">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Store", "@id": "https://fabrykamomentiv.online/#studio", "name": "Фабрика моментів", "alternateName": "Студія подарунків «Фабрика моментів»", "url": "https://fabrykamomentiv.online/", "email": "fabrykamomentiv@gmail.com", "image": "https://fabrykamomentiv.online/img/hw01.jpg", "description": "Студія подарунків «Фабрика моментів», м. Апостолове: крафтові набори до свят, 3D-фігурки, що світяться в темряві, значки з вашим дизайном і пакування з печаткою. Доставка Новою поштою та Укрпоштою.", "foundingDate": "2023", "address": {"@type": "PostalAddress", "addressLocality": "Апостолове", "addressRegion": "Дніпропетровська область", "addressCountry": "UA"}, "areaServed": "UA", "openingHours": "Mo-Su 09:00-18:00", "sameAs": ["https://www.instagram.com/fabrykamomentiv/"]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Скільки коштує подарунок?", "acceptedAnswer": {"@type": "Answer", "text": "Є набори до 100, до 200 і до 300 грн. Ціну «від» вказано на кожній картці. Остаточну суму ми погоджуємо з вами в месенджері до оплати, і після погодження вона не змінюється."}}, {"@type": "Question", "name": "Як оплатити?", "acceptedAnswer": {"@type": "Answer", "text": "Передоплатою на картку, накладеним платежем або під час самовивозу — як вам зручніше. Для індивідуальних замовлень — обов’язкова передоплата 50 %."}}, {"@type": "Question", "name": "Як отримати?", "acceptedAnswer": {"@type": "Answer", "text": "Новою поштою або Укрпоштою по всій Україні, доставку оплачує отримувач за тарифами перевізника. Або самовивіз в Апостоловому: адресу надсилаємо після підтвердження замовлення."}}, {"@type": "Question", "name": "Як швидко ви відповідаєте?", "acceptedAnswer": {"@type": "Answer", "text": "Заявки обробляємо щодня, з понеділка по неділю, з 9:00 до 18:00. Ми пишемо вам протягом дня в месенджері, який ви обрали у формі."}}, {"@type": "Question", "name": "Скільки часу збираєте набір?", "acceptedAnswer": {"@type": "Answer", "text": "Готовий набір збираємо від години до кількох годин. Якщо в замовленні є 3D-друк, — від доби до 3 днів (за умови, що не буде відключень світла). Відправляємо через день, включно з вихідними."}}, {"@type": "Question", "name": "Чи можна додати ім’я або напис?", "acceptedAnswer": {"@type": "Answer", "text": "Так. Текст на листівці — безкоштовно. Ініціал на сургучній печатці (поки лише латинські літери) і 3D-напис чи фігурка — за доплату; персоналізація додає 1–2 години до строку."}}, {"@type": "Question", "name": "Чи можна змінити склад?", "acceptedAnswer": {"@type": "Answer", "text": "Так: солодощі можна замінити в межах коробки. Якщо є алергія, напишіть про це в коментарі до заявки."}}, {"@type": "Question", "name": "З якого віку підходять набори?", "acceptedAnswer": {"@type": "Answer", "text": "Набори зі значками та 3D-фігурками не підходять дітям до 3 років через дрібні деталі."}}]}]}</script>
-<script src="assets/config.js"></script>
-<script src="assets/data.js"></script>
 <script src="/assets/site.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
@@ -417,8 +415,25 @@ img,video{display:block;max-width:100%}
 .done-card h2{font:700 22px/1.25 var(--fm-font-head)}.done-mk{width:110px}
 .cf{position:absolute;top:-10px;width:10px;height:14px;border-radius:3px;animation:cf 2s ease-in forwards}
 @keyframes cf{to{transform:translate(var(--dx),420px) rotate(540deg);opacity:0}}
-.pc.js-card{cursor:pointer}
 @media(max-width:720px){.steps,.tiles,.grid2{grid-template-columns:minmax(0,1fr)}#orderForm .btn{align-self:stretch}}
+/* 02.11.2026 — пакет 1 */
+img,video{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
+@media(max-width:899px){.hw-in{gap:44px}.sw{left:80%}}
+@media(max-width:720px){.hd{padding-top:54px}}
+@media(max-width:420px){.hd{gap:8px}.right{gap:4px}.ptr{gap:2px}.ptr svg{width:28px;height:20px}.logo{gap:8px}[data-theme=halloween] .logo svg{width:34px;height:34px}}
+@media(max-width:899px){
+ .pack .pics{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 calc(-1*clamp(16px,5vw,64px));padding:4px clamp(16px,5vw,64px) 14px}
+ .pack .pics::-webkit-scrollbar{display:none}
+ .pack .pic,.pack .pic:first-child{flex:0 0 72%;max-width:320px;aspect-ratio:1;grid-column:auto;scroll-snap-align:center}
+}
+[hidden]{display:none!important}
+.fm-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:999px;font:700 16px/1 var(--fm-font-body);text-decoration:none;cursor:pointer;border:2px solid var(--fm-text);background:var(--fm-surface);color:var(--fm-text)}
+.fm-btn-accent{background:var(--fm-accent);border-color:var(--fm-accent);color:var(--fm-accent-ink)}
+.fm-cookie{position:fixed;z-index:85;left:12px;right:12px;bottom:calc(12px + var(--fm-bottom-offset,0px) + env(safe-area-inset-bottom,0px));max-width:420px;margin:0 auto;background:var(--fm-surface);color:var(--fm-text);border-radius:var(--fm-radius);padding:16px;box-shadow:0 10px 28px rgba(60,30,10,.25);font:400 15px/1.5 var(--fm-font-body)}
+@media(min-width:768px){.fm-cookie{left:auto;right:24px;bottom:calc(24px + var(--fm-bottom-offset,0px));margin:0}}
+.fm-cookie p{margin:0 0 12px}.fm-cookie a{color:var(--fm-accent)}
+.fm-cookie-actions{display:flex;gap:8px}.fm-cookie-actions .fm-btn{flex:1;min-height:44px;padding:0 12px}
+.fm-toast{position:fixed;z-index:95;left:50%;transform:translateX(-50%);bottom:calc(24px + var(--fm-bottom-offset,0px) + env(safe-area-inset-bottom,0px));background:#3B2A24;color:#fff;padding:10px 16px;border-radius:14px;font:500 15px/1.3 var(--fm-font-body);max-width:90vw}
 </style>
 </head>
 <body>
@@ -457,10 +472,10 @@ img,video{display:block;max-width:100%}
   <div class="hwz" id="hwz">
    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="gs" viewBox="0 0 100 120"><path d="M10 110V50C10 22 28 6 50 6s40 16 40 44v60l-13-10-13 10-14-10-14 10-13-10z"/><ellipse cx="36" cy="50" rx="6" ry="8" fill="#2a1745"/><ellipse cx="64" cy="50" rx="6" ry="8" fill="#2a1745"/><ellipse cx="50" cy="75" rx="7" ry="9" fill="#2a1745"/></symbol></svg>
    <svg class="gh g1" viewBox="0 0 100 120" aria-hidden="true"><use href="#gs"/></svg><svg class="gh g2" viewBox="0 0 100 120" aria-hidden="true"><use href="#gs"/></svg><svg class="gh g3" viewBox="0 0 100 120" aria-hidden="true"><use href="#gs"/></svg>
-   <span class="tip-b t-ghost" id="tgh" aria-hidden="true"><b>Посвіти на нас ліхтарем</b><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3C3 13 8 21 20 25"/><path d="M12 26L21 25L19 17"/></svg></span><div class="eyes e2" aria-hidden="true"><div class="ey"><div class="pupil"></div></div><div class="ey"><div class="pupil"></div></div></div>
+   <div class="eyes e2" aria-hidden="true"><div class="ey"><div class="pupil"></div></div><div class="ey"><div class="pupil"></div></div></div>
    <div class="hw-in">
     <div class="deck-w">
-     <div class="tag">Привиди світяться!</div>
+     
      <div class="deck" id="deck" aria-roledescription="карусель" aria-label="Набори до Геловіну"></div>
      <div class="dctl"><svg class="gh gm gm1" viewBox="0 0 100 120" aria-hidden="true"><use href="#gs"/></svg><button id="dprev" aria-label="Попередній набір"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><output id="dcount" aria-live="polite">1 / 10</output><button id="dnext" aria-label="Наступний набір"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><svg class="gh gm gm2" viewBox="0 0 100 120" aria-hidden="true"><use href="#gs"/></svg></div>
      <div class="hacts"><a class="hbtn js-order" id="ctahw" href="#">Замовити момент</a></div>
@@ -544,7 +559,7 @@ img,video{display:block;max-width:100%}
   </div>
   <div class="pics">
    <div class="pic"><img src="img/bd1.jpg" alt="Закатні значки з власними фото та малюнками" loading="lazy"></div>
-   <div class="pic"><img src="img/bd2.jpg" alt="Значки до Геловіну: гарбузи, привиди, кажани" loading="lazy"><span class="ph-cap">Візуалізація. Виріб виглядатиме подібно</span></div>
+   <div class="pic"><img src="img/bd2.jpg" alt="Значки до Геловіну: гарбузи, привиди, кажани" loading="lazy"></div>
   </div>
  </div>
 </section>
@@ -554,14 +569,18 @@ img,video{display:block;max-width:100%}
   <div>
    <span class="tg">Пакування</span>
    <h2 id="pkh">Пакування з печаткою</h2>
-   <p>Крафт-папір, джутовий шпагат, сургуч або віск. Відбиток обираєте самі, безкоштовно. А ще — святкові конуси, пакунки з вушками й рукавичка-рука, у яких ми збираємо набори.</p>
+   <p>Крафт-папір, джутовий шпагат, сургуч або віск. Відбиток обираєте самі, безкоштовно. Або доповніть свій подарунок особливим штрихом — особистим листом у красивому конверті із сургучною печаткою.</p>
    <ul class="prices" data-sec="packaging"></ul>
   </div>
-  <div class="pics">
+  <div class="pics" aria-label="Фото: штампи, печатки й конверти">
+   <div class="pic"><img src="img/pk4.jpg" alt="Набір металевих штампів для сургучних печаток: квіти, серця, сніжинка, бантик, лапка" loading="lazy" width="1400" height="700"></div>
+   <div class="pic"><img src="img/pk5.jpg" alt="Червона сургучна печатка з ініціалом A поруч із латунним штампом" loading="lazy" width="900" height="900"></div>
+   <div class="pic"><img src="img/pk6.jpg" alt="Крафтовий конверт із мідною сургучною печаткою For you" loading="lazy" width="900" height="900"></div>
+   <div class="pic"><img src="img/pk7.jpg" alt="Крафтовий конверт, запечатаний червоною печаткою з лапкою" loading="lazy" width="900" height="900"></div>
+   <div class="pic"><img src="img/pk8.jpg" alt="Бордовий конверт із золотими лініями та перламутровою печаткою-трояндою" loading="lazy" width="900" height="900"></div>
+   <div class="pic"><img src="img/pk10.jpg" alt="Штампи з ініціалами: латинські літери з квітковим орнаментом" loading="lazy" width="900" height="900"></div>
+   <div class="pic"><img src="img/pk9.jpg" alt="Сургучна печатка з відьмою на мітлі до Геловіну" loading="lazy" width="900" height="900"></div>
    <div class="pic"><img src="img/pk1.jpg" alt="Подарунок у крафт-папері з джутовим шпагатом і сургучною печаткою" loading="lazy"></div>
-   <div class="pic"><img src="img/b5.jpg" alt="Сургучні печатки різних кольорів на крафтовому конверті" loading="lazy"></div>
-   <div class="pic"><img src="img/pk2.jpg" alt="Святкове пакування: прозорі конуси з бантами" loading="lazy"><span class="ph-cap">Візуалізація</span></div>
-   <div class="pic"><img src="img/pk3.jpg" alt="Святкове пакування: пакунки з вушками" loading="lazy"><span class="ph-cap">Візуалізація</span></div>
   </div>
  </div>
 </section>
@@ -613,7 +632,7 @@ img,video{display:block;max-width:100%}
    <label class="fld"><span>Що замовляєте</span><select name="product"></select></label>
    <div class="grid2">
     <label class="fld"><span>Привід</span><input name="occasion" maxlength="80" placeholder="Наприклад, Геловін"></label>
-    <label class="fld"><span>Кому даруєте</span><select name="whom"><option value="">—</option><option>Дитині</option><option>Друзям</option><option>Колегам</option><option>Собі</option><option>Іншому</option></select></label>
+    <label class="fld"><span>Кому даруєте</span><select name="whom"><option value="">—</option><option>Дитині</option><option>Рідним</option><option>Друзям</option><option>Колегам</option><option>Собі</option><option>Комусь іншому</option></select></label>
    </div>
    <div class="grid2">
     <label class="fld"><span>Бажана дата отримання</span><input name="desired_date" type="date"></label>
@@ -680,6 +699,8 @@ img,video{display:block;max-width:100%}
 </div>
 
 
+<script src="assets/config.js?v=20261102"></script>
+<script src="assets/data.js?v=20261102"></script>
 <script>
 (function(){
 var RM=matchMedia('(prefers-reduced-motion: reduce)').matches,html=document.documentElement;
@@ -699,7 +720,7 @@ var T=[
   sl:[S(A['v1.jpg'],'Яйця-сюрпризи з 3D-друку з ажурним візерунком'),S(A['v2.jpg'],'Яйця-сюрпризи з 3D-друку з цукерками всередині'),S(A['v3.jpg'],'Яйця-сюрпризи з 3D-друку з цукерками всередині'),S(A['v4.jpg'],'Яйця-сюрпризи з 3D-друку з цукерками всередині'),S(A['v5.jpg'],'Яйця-сюрпризи з 3D-друку з цукерками серед квітів')],
   tape:'Стрітення ★ Перший день весни ★ Масляна ★ Великдень ★ Яйця-сюрпризи з 3D-друку ★ '},
  {id:'lito',mt:'Влаштуй пелюстковий дощ',tmp:1,sl:[L(S(A['b3.jpg'],'Органайзер для олівців з 3D-друку з кольоровими олівцями й вазоном'),'3D-друк','Органайзер для олівців'),L(S(A['x3d13.jpg'],'Органайзер для олівців і кашпо з 3D-друку, колаж'),'3D-друк','Кашпо й органайзери'),L(S(A['bd1.jpg'],'Закатні значки з власними фото та малюнками'),'Значки','Значки з вашими фото'),L(S(A['x3d14.jpg'],'Головоломка, гнучкі змійка й павуки з 3D-друку, колаж'),'3D-друк','Іграшки з 3D-друку')],name:'Літо',c:'#2FB5B0',kicker:'Літній куточок',title:'Купала і літнє сонцестояння',lead:'Літні подарунки на Купала й сонцестояння',acc:'wreath',fx:'petals',hint:'Торкніться Моментика — посиплються пелюстки',ptr:'Тицяй сюди',tape:'Трійця ★ Купала ★ Спас ★ Літні подарунки ★ '},
- {id:'osin',mt:'Отримай листопад',tmp:1,sl:[L(S(A['hw04b.jpg'],'Помаранчева коробка, перев’язана стрічкою, на осінньому листі'),'Набори','Коробка на осінньому листі'),L(S(A['pk1.jpg'],'Подарунок у крафт-папері з джутовим шпагатом і сургучною печаткою серед осіннього листя'),'Пакування','Крафт із печаткою'),L(S(A['x3d06.jpg'],'Фіолетова подарункова коробка з 3D-друку з білим бантом'),'3D-друк','Коробка з бантом'),L(S(A['b5.jpg'],'Сургучні печатки різних кольорів на крафтовому конверті'),'Пакування','Печатки на вибір')],name:'Осінь',c:'#C8642E',kicker:'Осінній куточок',title:'Покрова і осіннє рівнодення',lead:'Осінні подарунки на Покрову й рівнодення',acc:'leaf',fx:'leaves',hint:'Торкніться Моментика — закружляє листя',ptr:'Зазирни сюди',tape:'Покрова ★ Осіннє рівнодення ★ Затишні подарунки ★ '},
+ {id:'osin',mt:'Отримай листопад',tmp:1,sl:[L(S(A['hw04b.jpg'],'Помаранчева коробка, перев’язана стрічкою, на осінньому листі'),'Набори','Коробка на осінньому листі'),L(S(A['pk1.jpg'],'Подарунок у крафт-папері з джутовим шпагатом і сургучною печаткою серед осіннього листя'),'Пакування','Крафт із печаткою'),L(S(A['x3d06.jpg'],'Фіолетова подарункова коробка з 3D-друку з білим бантом'),'3D-друк','Коробка з бантом'),L(S(A['pk6.jpg'],'Крафтовий конверт із мідною сургучною печаткою For you'),'Пакування','Лист у конверті з печаткою')],name:'Осінь',c:'#C8642E',kicker:'Осінній куточок',title:'Покрова і осіннє рівнодення',lead:'Осінні подарунки на Покрову й рівнодення',acc:'leaf',fx:'leaves',hint:'Торкніться Моментика — закружляє листя',ptr:'Зазирни сюди',tape:'Покрова ★ Осіннє рівнодення ★ Затишні подарунки ★ '},
  {id:'kokhannia',mt:'Отримай комплімент',fx:'compliment',tmp:1,sl:[L(S(A['x3d03.jpg'],'Фіолетова подарункова коробка з 3D-друку з бантом'),'3D-друк','Коробка з бантом'),L(S(A['pk1.jpg'],'Подарунок у крафт-папері з джутовим шпагатом і сургучною печаткою'),'Пакування','Крафт із печаткою'),L(S(A['bd1.jpg'],'Закатні значки з власними фото та малюнками'),'Значки','Значки з вашими фото'),L(S(A['x3d01.jpg'],'Деталі й готова подарункова коробка з 3D-друку, колаж'),'3D-друк','Коробка: від деталей до подарунка')],name:'Кохання',c:'#E0483A',kicker:'Куточок кохання',title:'Міжнародний день чоловіків',lead:NEED,hint:'Без фішки: серце з’являється лише на Валентина',ptr:'Зазирни сюди',tape:'День чоловіків ★ День Святого Валентина ★ 8 Березня ★ '},
  {id:'ukraina',mt:'Привітайся',name:'Україна',c:'#1E5BB8',kicker:'Український куточок',title:'День Прапора і День Незалежності',lead:NEED,hint:'Спокійна тема без ігрових ефектів. На День ЗСУ й День захисників — без Моментика',ptr:'Меню тут',
   sl:[S(A['u1.jpg'],'Синьо-жовта скринька-серце з 3D-друку'),S(A['u2.jpg'],'Скринька-серце синьо-жовта на підставці'),S(A['u3.jpg'],'Скринька-серце у кольорах прапора України, колаж')],tape:'День Незалежності ★ День вишиванки ★ День Конституції ★ '},
@@ -712,7 +733,7 @@ var CAMP=[{id:'halloween2026',t:'Геловін',start:'2026-10-17',first:'2026-
  {id:'mykolai2026',t:'День Святого Миколая',start:'2026-11-08',first:'2026-12-06',end:'2026-12-19',items:['WN-01','WN-02']},
  {id:'rizdvo2026',t:'Святвечір і Різдво',start:'2026-11-08',first:'2026-12-24',end:'2027-01-07',items:['WN-01','WN-02']},
  {id:'novyirik2027',t:'Новий рік',start:'2026-11-08',first:'2027-01-01',end:'2027-01-14',items:['WN-01','WN-02']}];
-var BASE=[L(S(A['b2.jpg'],'Привид 75 мм з 3D-друку: білий удень і зелений у темряві'),'3D-друк','Привид, що світиться'),L(S(A['gh3.jpg'],'Білі привиди з 3D-друку різних розмірів'),'3D-друк','Привиди різних розмірів'),L(S(A['bd1.jpg'],'Закатні значки з власними фото та малюнками'),'Значки','Значки з вашим дизайном'),L(S(A['bd2.jpg'],'Значки до Геловіну: гарбузи, привиди, кажани',1),'Значки','Значки до свята'),L(S(A['pk1.jpg'],'Подарунок у крафт-папері з джутовим шпагатом і сургучною печаткою'),'Пакування','Крафт із печаткою'),L(S(A['b5.jpg'],'Сургучні печатки різних кольорів на крафтовому конверті'),'Пакування','Печатки на вибір')];
+var BASE=[L(S(A['b2.jpg'],'Привид 75 мм з 3D-друку: білий удень і зелений у темряві'),'3D-друк','Привид, що світиться'),L(S(A['gh3.jpg'],'Білі привиди з 3D-друку різних розмірів'),'3D-друк','Привиди різних розмірів'),L(S(A['bd1.jpg'],'Закатні значки з власними фото та малюнками'),'Значки','Значки з вашим дизайном'),L(S(A['bd2.jpg'],'Значки до Геловіну: гарбузи, привиди, кажани',1),'Значки','Значки до свята'),L(S(A['pk1.jpg'],'Подарунок у крафт-папері з джутовим шпагатом і сургучною печаткою'),'Пакування','Крафт із печаткою'),L(S(A['pk4.jpg'],'Набір металевих штампів для сургучних печаток'),'Пакування','Штампи на вибір')];
 function vis(id){return !!PBY[id]&&!!ITEMS[id]}
 function brandSets(day,win){
  var live=CAMP.filter(function(c){return c.start<=day&&c.end>=day&&c.items.some(function(x){return vis(x,win)})}).sort(function(a,b){return a.first<b.first?-1:1});
@@ -735,9 +756,15 @@ var TODAY=(function(){var p=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Ky
 var Q=new URLSearchParams(location.search);if(/^\d{4}-\d\d-\d\d$/.test(Q.get('date')||''))TODAY=Q.get('date');
 function norm(d){(d.products||[]).forEach(function(p){if(!p.campaigns){p.campaigns=[];Object.keys(p).forEach(function(k){if(k.indexOf('c_')===0&&p[k]==='так')p.campaigns.push(k.slice(2))})}});return d}
 norm(DATA);
-var PBY={};function indexP(){PBY={};DATA.products.forEach(function(p){PBY[p.item_id]=p});window.FM_PRODUCTS=DATA.products}indexP();
-var IMG={'HW-01':'hw01.jpg','HW-02':'hw02.jpg','HW-03':'hw03.jpg','HW-04':'hw04.jpg','HW-05':'hw05.jpg','HW-06':'hw06.jpg','HW-07':'hw07.jpg','HW-08':'hw08.jpg','HW-09':'hw09.jpg','AD-01':'ad01.jpg','WN-01':'z6.jpg','WN-02':'wn02.jpg','EA-01':'v1.jpg','GH-02':'b2.jpg'};
-var VIZ={'HW-06':1,'HW-07':1,'HW-09':1};
+var PBY={};function indexP(){PBY={};DATA.products.forEach(function(p){PBY[p.item_id]=p});window.FM_PRODUCTS=DATA.products;indexM()}
+/* Фото з таблиці «Матеріали» (Cloudinary). Поки там немає адрес — фото беруться з папки img, як раніше. */
+var MEDIA={};function indexM(){MEDIA={};(DATA.media||[]).forEach(function(m){if(!m||!m.url||!m.owner_id||/\.(mp4|mov)$/i.test(m.url))return;(MEDIA[m.owner_id]=MEDIA[m.owner_id]||[]).push(m)});
+ Object.keys(MEDIA).forEach(function(k){MEDIA[k].sort(function(a,b){return(a.role==='картка'?0:1)-(b.role==='картка'?0:1)||(a.sort||99)-(b.sort||99)})})}
+function cld(u,w){return /res\.cloudinary\.com\/.+\/upload\//.test(u)&&!/\/upload\/[a-z]{1,2}_/.test(u)?u.replace('/upload/','/upload/f_auto,q_auto,c_limit,w_'+w+'/'):u}
+function photoOf(id,w){var m=MEDIA[id];return m&&m[0]?cld(m[0].url,w||800):(IMG[id]?'img/'+IMG[id]:'')}
+window.fmPhotoOf=photoOf;
+var IMG={'HW-01':'hw01.jpg','HW-02':'hw02.jpg','HW-03':'hw03.jpg','HW-04':'hw04.jpg','HW-05':'hw05.jpg','HW-06':'hw06.jpg','HW-07':'hw07.jpg','HW-08':'hw08.jpg','HW-09':'hw09.jpg','AD-01':'ad01.jpg','WN-01':'z6.jpg','WN-02':'wn02.jpg','WN-03':'wn03.jpg','WN-04':'wn04.jpg','WN-05':'wn05.jpg','WN-06':'wn06.jpg','WN-07':'wn07.jpg','3D-05':'3d05.jpg','3D-06':'3d06.jpg','EA-01':'v1.jpg','GH-02':'b2.jpg'};
+indexP();
 function money(v){if(v===''||v==null)return '';var n=Number(v);return 'від '+(n%1?String(n).replace('.',','):n)+' грн'}
 function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var THEMES=['brand','kokhannia','rodyna','ukraina','zyma','vesna-velykden','lito','osin','halloween'];
@@ -848,7 +875,7 @@ function stopAuto(){car.paused=true;var pz=document.getElementById('cpz');if(pz)
 function show(i){var sl=stage.querySelectorAll('.sl'),d=stage.querySelectorAll('#dots i');car.i=(i+car.n)%car.n;
  sl.forEach(function(s,k){s.classList.toggle('on',k===car.i);var v=s.querySelector('video');if(v){if(k===car.i&&!RM)v.play().catch(function(){});else v.pause()}});
  var cn=document.getElementById('cnt');if(cn)cn.textContent=(car.i+1)+' / '+car.n;caption(cur,car.i)}
-function caption(t,i){var c=document.getElementById('aicap'),s=t.sl[i];if(!c)return;c.innerHTML=(s.sec?'<b>'+s.sec+'</b> · '+s.name:'')+(s.viz?(s.sec?'<br>':'')+'Візуалізація. Виріб виглядатиме подібно':'')+(t.tmp?'<br><small>тимчасове фото</small>':'')}
+function caption(t,i){var c=document.getElementById('aicap'),s=t.sl[i];if(!c)return;c.innerHTML=(s.sec?'<b>'+s.sec+'</b> · '+s.name:'')+''}
 function bindMk(el,t){if(!el)return;var go=function(){var s=el.querySelector('svg');if(s&&t.fx!=='petals'&&t.fx!=='leaves'){s.classList.add('wink');setTimeout(function(){s.classList.remove('wink')},450)}
  done('.t-mk');if(t.fx==='compliment')say(el);
  if(t.fx==='petals')burst(el,'petal',26);if(t.fx==='leaves')burst(el,'leaf',18);if(t.fx==='peek')peek()};
@@ -865,7 +892,7 @@ function makeSnow(){for(var i=0;i<28;i++){var f=document.createElement('i');f.st
 
 /* --- Halloween --- */
 var top=document.getElementById('top'),shade=document.getElementById('shade'),hwRaf=null,deck=document.getElementById('deck'),di=0,dT=null,dPaused=RM;
-deck.innerHTML=HW.map(function(s,i){return '<figure class="pc js-card" data-i="'+i+'" data-pid="'+HWID[i]+'" title="Замовити"><div class="ph">'+(s.vid?'<video muted loop playsinline preload="none" poster="'+s.poster+'"><source src="'+s.src+'" type="video/mp4"></video>':'<img src="'+s.src+'" alt="Набір «'+s.alt+'»" loading="lazy">')+'</div><figcaption>'+(s.name||s.alt)+(s.viz?'<small>Візуалізація. Виріб виглядатиме подібно</small>':s.vid?'<small>Вдень білі — у темряві світяться</small>':'')+'</figcaption></figure>'}).join('');
+deck.innerHTML=HW.map(function(s,i){return '<figure class="pc" data-i="'+i+'"><div class="ph">'+(s.vid?'<video muted loop playsinline preload="none" poster="'+s.poster+'"><source src="'+s.src+'" type="video/mp4"></video>':'<img src="'+s.src+'" alt="Набір «'+s.alt+'»" loading="lazy">')+'</div><figcaption>'+(s.name||s.alt)+(s.vid?'<small>Вдень білі — у темряві світяться</small>':'')+'</figcaption></figure>'}).join('');
 var pcs=deck.querySelectorAll('.pc');
 function dshow(i){di=(i+pcs.length)%pcs.length;pcs.forEach(function(p,k){var r=(k-di+pcs.length)%pcs.length;p.className='pc'+(r===0?' p0':r===1?' p1':r===pcs.length-1?' p2':r===2?' p3':r===pcs.length-2?' p4':'');p.setAttribute('aria-hidden',r!==0);var v=p.querySelector('video');if(v){if(r===0&&!RM)v.play().catch(function(){});else v.pause()}});document.getElementById('dcount').textContent=(di+1)+' / '+pcs.length}
 document.getElementById('dprev').onclick=function(){dPaused=true;dshow(di-1)};document.getElementById('dnext').onclick=function(){dPaused=true;dshow(di+1)};
@@ -898,7 +925,7 @@ document.getElementById('spider').addEventListener('click',function(){done('#tsp
 /* --- розділи з даних: набори, скоро, ціни, питання --- */
 var CUR=null;
 function fmtD(d){var m=['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'];var p=d.split('-');return +p[2]+' '+m[+p[1]-1]}
-function card(p,cid){var im=IMG[p.item_id];return '<button class="card js-card" type="button" data-pid="'+esc(p.item_id)+'" data-cid="'+esc(cid||'')+'"><span class="im">'+(im?'<img src="img/'+im+'" alt="Набір «'+esc(p.title)+'»" loading="lazy">':'')+(VIZ[p.item_id]?'<small>Візуалізація. Виріб виглядатиме подібно</small>':'')+'</span><span class="bd"><b>'+esc(p.title)+'</b>'+(p.price_from!==''&&p.price_from!=null?'<span class="pr">'+money(p.price_from)+'</span>':'<span class="pr">Ціну уточнимо</span>')+(p.contents?'<span class="cn">'+esc(String(p.contents).split(';').slice(0,3).join(';'))+(String(p.contents).split(';').length>3?'…':'')+'</span>':'')+(p.size?'<span class="cn">Розмір: '+esc(p.size)+'</span>':'')+'<span class="go">Замовити →</span></span></button>'}
+function card(p,cid){var im=photoOf(p.item_id,600);return '<button class="card js-card" type="button" data-pid="'+esc(p.item_id)+'" data-cid="'+esc(cid||'')+'"><span class="im">'+(im?'<img src="'+esc(im)+'" alt="Набір «'+esc(p.title)+'»" loading="lazy" width="600" height="600">':'')+'</span><span class="bd"><b>'+esc(p.title)+'</b>'+(p.price_from!==''&&p.price_from!=null?'<span class="pr">'+money(p.price_from)+'</span>':'<span class="pr">Ціну уточнимо</span>')+(p.contents?'<span class="cn">'+esc(String(p.contents).split(';').slice(0,3).join(';'))+(String(p.contents).split(';').length>3?'…':'')+'</span>':'')+(p.size?'<span class="cn">Розмір: '+esc(p.size)+'</span>':'')+'<span class="go">Замовити →</span></span></button>'}
 function buildSections(){
  var c=CUR,list=[],cid='',title='Набори до свята',lead='Натисніть на набір — відкриється форма, де його вже обрано.';
  if(c){list=campItems(c.campaign_id);cid=c.campaign_id;title='Набори: '+c.title}
@@ -938,11 +965,12 @@ function light(off){lab.classList.toggle('dark',off);[lsw,lm].forEach(function(b
 lsw.onclick=function(){light(!lab.classList.contains('dark'));var tl=lm.querySelector('.t-lab b');if(tl)tl.textContent=lab.classList.contains('dark')?'Увімкни світло':'Вимкни світло — я засвічусь'};lm.onclick=lsw.onclick;
 
 /* --- sticky bar after hero CTA, toast --- */
-var bar=document.getElementById('bar');
-function barUpd(){var c=html.dataset.theme==='halloween'?document.getElementById('ctahw'):document.getElementById('cta'),r=c.getBoundingClientRect();bar.classList.toggle('on',r.width>0&&r.bottom<0)}
+var bar=document.getElementById('bar'),ordSec=document.getElementById('zamovyty');
+function barUpd(){var c=html.dataset.theme==='halloween'?document.getElementById('ctahw'):document.getElementById('cta'),r=c.getBoundingClientRect(),inForm=ordSec.getBoundingClientRect().top<innerHeight,on=r.width>0&&r.bottom<0&&!inForm;bar.classList.toggle('on',on);html.style.setProperty('--fm-bottom-offset',on?'76px':'0px')}
 addEventListener('scroll',barUpd,{passive:true});setTimeout(barUpd,300);addEventListener('load',barUpd);setInterval(barUpd,800);addEventListener('resize',barUpd);
 var toast=document.getElementById('toast'),tt;function toastMsg(m){toast.textContent=m;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on')},2600)}
 [].forEach.call(document.querySelectorAll('.js-order'),function(a){a.addEventListener('click',function(e){e.preventDefault();if(menu.classList.contains('open'))openMenu(false);var pl=a.id==='cta'||a.id==='ctahw'?'hero':a.closest('.bar')?'sticky':a.closest('.menu')?'menu':(a.dataset.place||'other');window.fmOpenOrder&&fmOpenOrder({campaignId:window.FM_CAMPAIGN,occasion:CUR?CUR.title:'',place:pl})})});
+document.addEventListener('contextmenu',function(e){if(e.target.closest&&e.target.closest('img,video'))e.preventDefault()});
 var tgo=document.getElementById('tgoff');if(CFG.telegram){var ta=document.createElement('a');ta.className='ic';ta.href=CFG.telegram;ta.target='_blank';ta.rel='noopener';ta.setAttribute('aria-label','Telegram');ta.innerHTML=tgo.innerHTML;tgo.replaceWith(ta)}else tgo.onclick=function(){toastMsg('Telegram тимчасово недоступний. Пишіть в Instagram або на пошту.')};
 lsw.addEventListener('click',function(){window.fmEvent&&fmEvent('light_toggle',{fm_state:lab.classList.contains('dark')?'off':'on'})});
 document.getElementById('doneMk').innerHTML=html.dataset.theme==='halloween'?'<svg viewBox="0 0 100 120" style="color:#fff;filter:drop-shadow(0 0 8px #c6ff00)"><use href="#gs" fill="#fff"/></svg>':mk();
@@ -954,9 +982,17 @@ function start(){CUR=pickCampaign();hwDates();var th=Q.get('theme');var id=T.som
  var tt=T.filter(function(x){return x.id===id})[0];if(tt&&CUR&&id!=='halloween'&&id!=='brand'){tt.title=CUR.title;if(CUR.subtitle)tt.lead=esc(CUR.subtitle)}
  if(tt&&tt.lead&&tt.lead.indexOf('ПОТРІБНО')>=0)tt.lead='Подарунки до свята — набори, 3D-друк і значки';
  buildSections();set(id,false)}
-if(CFG.catalogUrl){var done0=false,go=function(){if(!done0){done0=true;start()}};setTimeout(go,5000);
- fetch(CFG.catalogUrl).then(function(r){return r.json()}).then(function(d){if(d&&d.products&&d.products.length&&d.campaigns){DATA=norm(d);indexP();if(done0){var nc=pickCampaign(),oid=CUR?CUR.campaign_id:'',nid=nc?nc.campaign_id:'';if(nid!==oid&&!Q.get('theme'))start();else buildSections()}}}).catch(function(){}).then(go)}
-else start();
+var LSK='fm_catalog_v1';
+try{var c0=JSON.parse(localStorage.getItem(LSK)||'null');
+ if(c0&&c0.d&&c0.d.products&&c0.d.products.length&&c0.t>Date.now()-14*864e5&&String(c0.d.generated_at||'')>=String(DATA.generated||'')){
+  if(c0.day!==TODAY)(c0.d.campaigns||[]).forEach(function(c){delete c.hero_now});
+  DATA=norm(c0.d);indexP()}}catch(e){}
+start();
+if(CFG.catalogUrl){
+ fetch(CFG.catalogUrl).then(function(r){return r.json()}).then(function(d){if(!(d&&d.products&&d.products.length&&d.campaigns))return;
+  try{localStorage.setItem(LSK,JSON.stringify({t:Date.now(),day:TODAY,d:d}))}catch(e){}
+  var oid=CUR?CUR.campaign_id:'';DATA=norm(d);indexP();var nc=pickCampaign(),nid=nc?nc.campaign_id:'';
+  if(nid!==oid&&!Q.get('theme'))start();else{CUR=nc||CUR;hwDates();buildSections()}}).catch(function(){})}
 })();
 </script>
 <script src="assets/fm-order.js"></script>
