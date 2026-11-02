@@ -441,10 +441,20 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
 @keyframes fmShow{to{opacity:1}}
 @media(prefers-reduced-motion:reduce){html.fm-wait .top{opacity:1}}
-.hd.tight .ptr span{font-size:12px;max-width:84px}.hd.tight .ptr svg{display:none}.hd.tight2 .ptr{display:none}
 .pc.p0{cursor:pointer}
 .card.hl{animation:hl 1.8s ease-out}
 @keyframes hl{0%,40%{box-shadow:0 0 0 4px var(--fm-accent),0 10px 24px rgba(60,30,10,.12)}100%{box-shadow:0 10px 24px rgba(60,30,10,.12)}}
+/* 02.11.2026 — стійкість до збільшеного шрифту й низького вікна (Instagram, відкрита клавіатура) */
+@media(max-width:899px){
+ .hw-in{--cw:max(150px,min(56vw,230px,calc((100svh - 340px)*.6)))}
+ .stage{width:min(100%,max(250px,min(360px,calc((100svh - 340px)*.8 + 70px))))}
+}
+@media(min-width:600px) and (max-width:899px){.stage{width:min(100%,max(300px,min(470px,calc((100svh - 340px)*.8 + 70px))))}}
+.bar .btn,.hbtn,.acts .btn,.sbtn{white-space:nowrap}
+@media(max-width:599px){.acts .btn,.hbtn,.sbtn,.bar .btn{font-size:17px;padding-left:16px;padding-right:16px}}
+.hd.tight .ptr span{font-size:12px;max-width:122px}.hd.tight .ptr svg{display:none}
+.hd.tight2 .logo b{font-size:13px}.hd.tight2 .logo span{font-size:10px}.hd.tight2 .logo svg,[data-theme=halloween] .hd.tight2 .logo svg{width:30px;height:30px}.hd.tight2 .logo{gap:6px}[data-theme=halloween] .hd.tight2 .logo{padding:6px 9px 6px 6px}
+.hd.tight3 .ptr{display:none}
 </style>
 </head>
 <body>
@@ -879,8 +889,8 @@ function set(id,push){
 }
 function ready(id){html.classList.remove('fm-wait');if(!Q.get('theme'))try{localStorage.setItem('fm_theme',JSON.stringify({id:id,day:TODAY}))}catch(e){}setTimeout(fitHd,0)}
 /* Шапка завжди вміщується: якщо браузер збільшив шрифт (Instagram, великий системний шрифт), фраза біля меню стискається, а за крайньої потреби ховається */
-function fitHd(){var hd=document.querySelector('.hd'),bg=document.getElementById('burger'),sp=document.getElementById('ptrt');if(!hd||!bg)return;hd.classList.remove('tight','tight2');
- var bad=function(){return bg.getBoundingClientRect().right>innerWidth-8||(sp&&sp.offsetHeight>44)};if(bad()){hd.classList.add('tight');if(bad())hd.classList.add('tight2')}}
+function fitHd(){var hd=document.querySelector('.hd'),bg=document.getElementById('burger'),sp=document.getElementById('ptrt');if(!hd||!bg)return;hd.classList.remove('tight','tight2','tight3');
+ var bad=function(){return bg.getBoundingClientRect().right>innerWidth-8||(sp&&sp.offsetHeight>44)};['tight','tight2','tight3'].some(function(c){if(!bad())return true;hd.classList.add(c);return false})}
 addEventListener('resize',function(){fitHd()});if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitHd()});
 function startCar(t){car.i=0;car.n=t.sl.length;show(0);
  document.getElementById('cp').onclick=function(){stopAuto();show(car.i-1)};document.getElementById('cn').onclick=function(){stopAuto();show(car.i+1)};
