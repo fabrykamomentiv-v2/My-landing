@@ -1,4 +1,5 @@
 /* Фабрика моментів — форма «Замовити момент», джерело переходу й події аналітики.
+   Версія 1.1, 04.11.2026: перевірка номера телефону і запис у вигляді +380 XX XXX XX XX.
    Версія 1.0, 29.10.2026. Заявка йде в скрипт заявок (config.js → ordersUrl). */
 (function () {
   'use strict';
@@ -85,11 +86,33 @@
     box.classList.toggle('bad', on);
     el.setAttribute('aria-invalid', on ? 'true' : 'false');
   }
+  // Номер: 0XXXXXXXXX, +380…, 80… або 9 цифр → +380 XX XXX XX XX; іноземний — з «+», 8–15 цифр
+  function normPhone(raw) {
+    var s = String(raw || '').trim(), d = s.replace(/\D/g, '');
+    if (/^\+/.test(s) && d.indexOf('380') !== 0) return (d.length >= 8 && d.length <= 15) ? '+' + d : '';
+    if (d.length === 12 && d.indexOf('380') === 0) d = d.slice(3);
+    else if (d.length === 11 && d.indexOf('80') === 0) d = d.slice(2);
+    else if (d.length === 10 && d.charAt(0) === '0') d = d.slice(1);
+    else if (d.length !== 9) return '';
+    if (d.charAt(0) === '0') return '';
+    return '+380 ' + d.slice(0, 2) + ' ' + d.slice(2, 5) + ' ' + d.slice(5, 7) + ' ' + d.slice(7);
+  }
+  // Підказка одразу після введення номера (поле втратило фокус), а не лише при надсиланні
+  form.elements.phone.addEventListener('blur', function () {
+    var el = this; if (!el.value.trim()) return;
+    var ph = normPhone(el.value);
+    if (ph) el.value = ph;
+    setErr('phone', !ph);
+  });
+  form.elements.phone.addEventListener('input', function () {
+    var box = this.closest('.fld'); if (box && box.classList.contains('bad') && normPhone(this.value)) setErr('phone', false);
+  });
   function validate() {
     var bad = [];
     var f = form.elements;
     if (!f.name.value.trim()) bad.push('name');
-    if (f.phone.value.replace(/\D/g, '').length < 9) bad.push('phone');
+    var ph = normPhone(f.phone.value);
+    if (ph) f.phone.value = ph; else bad.push('phone');
     if (f.email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim())) bad.push('email');
     if (!f.consent_terms.checked) bad.push('consent_terms');
     ['name', 'phone', 'email', 'consent_terms'].forEach(function (n) { setErr(n, bad.indexOf(n) >= 0); });
