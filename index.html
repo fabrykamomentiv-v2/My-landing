@@ -165,6 +165,8 @@ img,video{display:block;max-width:100%}
 .thread{width:3px;height:140px;background:var(--cream)}
 .spider{width:64px;height:48px;margin-top:-4px;padding:0;border:0;background:none;cursor:pointer}
 .gh{position:absolute;z-index:3;width:var(--w);fill:var(--cream);stroke:var(--ink);stroke-width:3;opacity:.92;filter:drop-shadow(0 0 10px rgba(255,244,224,.4));animation:fl 6s ease-in-out infinite alternate;transition:filter .4s,opacity .4s;pointer-events:none}
+.gh.tap{animation:none;opacity:1;filter:drop-shadow(0 0 20px rgba(255,244,224,.95)) drop-shadow(0 0 46px rgba(198,255,0,.85));transform:scale(1.12);transition:transform .2s}
+.dctl .gm{pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .gh.lit{opacity:1;filter:drop-shadow(0 0 20px rgba(255,244,224,.95)) drop-shadow(0 0 46px rgba(198,255,0,.75))}
 @keyframes fl{from{transform:translateY(-10px) rotate(-3deg)}to{transform:translateY(12px) rotate(3deg)}}
 .g1{left:max(16px,2.5%);top:20%;--w:84px}.g2{right:max(20px,3%);top:6%;--w:58px;animation-delay:-2s}.g3{right:max(16px,2.5%);top:34%;--w:100px;animation-delay:-4s}
@@ -525,6 +527,26 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
  .nacts{margin:20px -28px 0;padding:14px 28px 22px}
 }
 @media(prefers-reduced-motion:reduce){.npanel,.nback{animation:none}}
+
+/* «Полароїди» на першому екрані в усіх темах, крім Геловіну (04.11.2026) */
+:root{--ptape:#E7C9A1}
+[data-theme=zyma]{--ptape:#BFD3EE}[data-theme=vesna-velykden]{--ptape:#CDEBB3}[data-theme=lito]{--ptape:#A8E1DC}[data-theme=osin]{--ptape:#EDB46A}
+[data-theme=kokhannia]{--ptape:#F5B0A4}[data-theme=ukraina]{--ptape:#FFD457}[data-theme=rodyna]{--ptape:#FFC9A8}
+.aicap{display:none!important}
+.pdeck{position:relative;aspect-ratio:4/5;touch-action:pan-y}
+.pdc{position:absolute;left:11%;right:11%;top:5%;bottom:auto;margin:0;background:#fff;padding:10px 10px 0;border-radius:20px;box-shadow:0 14px 30px rgba(60,30,10,.22);transition:transform .55s cubic-bezier(.3,1.3,.5,1),opacity .4s;opacity:0;pointer-events:none}
+.pdc::before{content:"";position:absolute;top:-13px;left:50%;width:86px;height:26px;margin-left:-43px;background:var(--ptape);opacity:.9;border-radius:5px;transform:rotate(-4deg);box-shadow:0 2px 5px rgba(60,30,10,.12)}
+.pph{aspect-ratio:1;overflow:hidden;border-radius:14px;background:var(--tint)}
+.pph img{width:100%;height:100%;object-fit:cover}
+.pdc figcaption{padding:10px 6px 13px;font:700 15px/1.25 var(--fm-font-head);color:#3B2A24;text-align:center}
+.pdc.q0{opacity:1;z-index:3;transform:rotate(-3deg);pointer-events:auto}
+.pdc.q1{opacity:1;z-index:2;transform:translate(44%,16px) rotate(7deg) scale(.84)}
+.pdc.q2{opacity:1;z-index:1;transform:translate(-44%,24px) rotate(-8deg) scale(.8)}
+.pdc.q3,.pdc.q4{opacity:0}
+[data-theme=ukraina] .pdc.q0{transform:none}[data-theme=ukraina] .pdc.q1{transform:translate(42%,12px) rotate(3deg) scale(.84)}[data-theme=ukraina] .pdc.q2{transform:translate(-42%,12px) rotate(-3deg) scale(.84)}
+[data-theme=zyma] .pdc{box-shadow:0 14px 30px rgba(5,20,50,.4)}
+@media(max-width:899px){.pdc figcaption{font-size:13.5px;padding:8px 4px 11px}.pdc.q1{transform:translate(36%,14px) rotate(7deg) scale(.82)}.pdc.q2{transform:translate(-36%,20px) rotate(-8deg) scale(.78)}}
+@media(prefers-reduced-motion:reduce){.pdc{transition:none}}
 </style>
 </head>
 <body>
@@ -661,7 +683,7 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
    <h2 id="bdh">Значки з вашим дизайном</h2>
    <p class="motto">Ваш світ. Ваші герої. Ваш стиль.</p>
    <p>Ваш малюнок, родинне фото, іменний значок для першокласника чи символіка команди — перенесемо на значок будь-яку ідею. Збирайте власну колекцію або даруйте значок як маленький персональний подарунок.</p>
-   <p>Закатні значки 25, 32 і 58 мм від 1 штуки, виготовлення 1 день. За вашим дизайном +15 грн. Від 20 шт. −5 %, від 50 шт. −10 %.</p>
+   <p>Закатні значки, брелоки й магніти 25, 32 і 58 мм від 1 штуки, виготовлення 1 день. За вашим дизайном +15 грн. Від 20 шт. −5 %, від 50 шт. −10 %.</p>
    <ul class="prices" data-sec="badges"></ul>
    <div class="sizes" aria-label="Розміри значків у пропорції"><figure><i style="width:43px;height:43px"></i>25 мм</figure><figure><i style="width:55px;height:55px"></i>32 мм</figure><figure><i style="width:100px;height:100px"></i>58 мм</figure></div>
   </div>
@@ -736,7 +758,7 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
   <form id="orderForm" novalidate>
    <div class="grid2">
     <label class="fld"><span>Ім’я *</span><input name="name" autocomplete="name" required maxlength="80"><em>Вкажіть ім’я</em></label>
-    <label class="fld"><span>Телефон *</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" placeholder="+380"><em>Вкажіть номер телефону</em></label>
+    <label class="fld"><span>Телефон *</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" placeholder="+380 __ ___ __ __"><em>Перевірте номер: 10 цифр, наприклад 096 123 45 67</em></label>
    </div>
    <fieldset class="fld pills"><legend>Яким месенджером вам зручніше?</legend>
     <label><input type="radio" name="messenger" value="Telegram"><span>Telegram</span></label>
@@ -828,7 +850,7 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
 
 
 <script src="assets/config.js?v=20261102"></script>
-<script src="assets/data.js?v=20261102"></script>
+<script src="assets/data.js?v=20261104"></script>
 <script>
 (function(){
 var RM=matchMedia('(prefers-reduced-motion: reduce)').matches,html=document.documentElement;
@@ -872,8 +894,26 @@ function brandSets(day,win){
  src.forEach(function(c){c.items.forEach(function(x){if(sl.length<2&&vis(x,win)&&!used[x]){used[x]=1;var it=ITEMS[x];sl.push(L(S(A[it[2]],it[3]),(soon?'Скоро · ':'Набори · ')+c.t,it[0]));if(names.indexOf(c.t)<0)names.push(c.t)}})});
  return {msg:(soon?'Продажі ще не стартували, тож беру першу кампанію з «Скоро»: ':'Набори з кампаній, де вже йдуть продажі: ')+names.map(function(n){return '«'+n+'»'}).join(', ')+'.',sl:sl};
 }
-function brandBuild(){var r=brandSets(TODAY,false);return r.sl.concat(BASE)}
+var BFIRST=L(S(A['p3d2.jpg'],'Фіолетова подарункова коробка з 3D-друку з цукерками'),'3D-друк','Коробка із солодощами');
+function brandBuild(){var r=brandSets(TODAY,false);return [BFIRST].concat(r.sl,BASE)}
 var ORDER=['brand','kokhannia','rodyna','ukraina','zyma','vesna-velykden','lito','osin','halloween'];T.sort(function(a,b){return ORDER.indexOf(a.id)-ORDER.indexOf(b.id)});
+/* Фото й тексти тем (погоджено замовницею 03–04.11.2026) */
+(function(){function g(id){return T.filter(function(x){return x.id===id})[0]}
+ function N(f,n,a){var o=S(A[f],a||n);o.name=n;return o}
+ g('zyma').sl=[N('z3.jpg','Шоколадний Миколай','Шоколадний Миколай у червоних подарункових коробках'),N('z2.jpg','Адвент-календар','Адвент-календарі на 24 віконця'),N('z4.jpg','Сніжинки, що світяться','Сніжинки з 3D-друку на ялинці'),N('z1.jpg','Горнятко з солодощами','Набір із двох горняток у святковій коробці'),N('z6.jpg','Ялинкові кулі','Зимовий набір: синя коробка з перламутровими кулями'),N('wn03.jpg','Дерев’яна розмальовка','Дерев’яна розмальовка до Нового року')];
+ g('vesna-velykden').sl=[N('ve1.jpg','Ажурне яйце-сюрприз','Яйце-сюрприз з 3D-друку з ажурним візерунком'),N('ve2.jpg','Яйце з цукерками','Яйце-сюрприз з 3D-друку з цукерками всередині'),N('ve3.jpg','Сюрприз усередині','Відкрите яйце-сюрприз з 3D-друку з солодощами'),N('ve4.jpg','Яйця-сюрпризи','Яйця-сюрпризи з 3D-друку'),N('ve5.jpg','Серед весняних квітів','Яйце-сюрприз з 3D-друку серед весняних квітів')];
+ var l=g('lito');l.sl=[N('p3d5.jpg','Органайзер для олівців','Органайзер для олівців з 3D-друку з кольоровими олівцями'),N('p3d6.jpg','Гнучкі змійка й павук','Гнучкі змійка й павук з 3D-друку'),N('bd3.jpg','Значок з вашим малюнком','Закатний значок з дитячим малюнком'),N('bd1.jpg','Значки з вашими фото','Закатні значки з власними фото та малюнками')];
+ l.lead='Легкі літні подарунки: 3D-іграшки, органайзери й значки з вашими фото. Для відпочинку, табору й випускного';
+ var o=g('osin');o.sl=[N('hw04-2.jpg','Коробка на осінньому листі','Помаранчева коробка, перев’язана стрічкою, на осінньому листі'),N('pk6.jpg','Лист у конверті з печаткою','Лист у конверті із сургучною печаткою'),N('pk1.jpg','Крафт із печаткою','Подарунок у крафт-папері з джутовим шпагатом і сургучною печаткою'),N('p3d1.jpg','Коробка з бантом','Фіолетова подарункова коробка з 3D-друку з бантом')];
+ o.lead='Затишні осінні набори в крафтовому пакуванні з сургучною печаткою — на Покрову, День вчителя чи просто так';
+ var k=g('kokhannia');k.sl=[N('pk8.jpg','Лист із печаткою-трояндою','Лист у конверті із сургучною печаткою-трояндою'),N('p3d3.jpg','Рамка-серце з фото','Рамка-серце з 3D-друку з фото'),N('pk5.jpg','Печатка з ініціалом','Сургучна печатка з ініціалом'),N('bd3.jpg','Значок з вашим малюнком','Закатний значок з малюнком')];
+ k.lead='Подарунки для коханих: рамка-серце з вашим фото або ваша ідея, надрукована на 3D-принтері, лист у конверті з печаткою з ініціалом і солодкий набір у крафтовому пакуванні';
+ var u=g('ukraina');u.sl=[N('p3d4.jpg','Синьо-жовте серце','Синьо-жовте серце з 3D-друку'),N('p3d3.jpg','Рамка-серце з фото','Синьо-жовта рамка-серце з 3D-друку з фото'),N('p3d2.jpg','Коробка із серцем','Фіолетова коробка з цукерками і синьо-жовте серце з 3D-друку')];
+ u.lead='Синьо-жовті серця, набори, значки, магніти та брелоки до державних свят. Подарунки, якими хочеться ділитися';
+ var r=g('rodyna');r.sl=[N('p3d2.jpg','Коробка із солодощами','Фіолетова коробка з 3D-друку з цукерками'),N('p3d3.jpg','Рамка-серце з родинним фото','Рамка-серце з 3D-друку з фото'),N('bd4.jpg','Іменний значок першокласниці','Іменний значок першокласниці'),N('p3d5.jpg','Органайзер для олівців','Органайзер для олівців з 3D-друку')];
+ r.lead='Родинні набори, статуетки у формі серця, настільні фрази вдячності, надруковані на 3D-принтері, значки та магніти з дитячими малюнками. Скажіть «дякую» так, щоб запам’яталося';
+})();
+
 var HW=[S(A['hwvid.mp4'],'Відео: привиди з 3D-друку вдень і в темряві',0,1,A['hwposter.jpg']),S(A['hw01.jpg'],'Франкенштейн'),S(A['hw02.jpg'],'Гарбуз'),S(A['hw03.jpg'],'З кажанами'),S(A['hw04.jpg'],'Happy Halloween'),S(A['hw05.jpg'],'Trick or Treat'),S(A['hw06.jpg'],'Геловінський конус з цукерками',1),S(A['hw07.jpg'],'Міні-пакунок з вушками',1),S(A['hw09.jpg'],'Значки до Геловіну',1)];
 HW[0].name='Привиди світяться';var HWID=['GH-02','HW-01','HW-02','HW-03','HW-04','HW-05','HW-06','HW-07','HW-09'];
 
@@ -896,7 +936,7 @@ var GAL={'HW-01':['hw01.jpg','hw01-2.jpg'],'HW-02':['hw02.jpg','hw02-2.jpg'],'HW
 function photosOf(id,w){var m=MEDIA[id];if(m&&m.length)return m.map(function(x){return{src:cld(x.url,w||1000),alt:x.alt||''}});var g=GAL[id]||(IMG[id]?[IMG[id]]:[]);return g.map(function(f){return{src:'img/'+f,alt:''}})}
 var IMG={'HW-01':'hw01.jpg','HW-02':'hw02.jpg','HW-03':'hw03.jpg','HW-04':'hw04.jpg','HW-05':'hw05.jpg','HW-06':'hw06.jpg','HW-07':'hw07.jpg','HW-08':'hw08.jpg','HW-09':'hw09.jpg','AD-01':'ad01.jpg','WN-01':'z6.jpg','WN-02':'wn02.jpg','WN-03':'wn03.jpg','WN-04':'wn04.jpg','WN-05':'wn05.jpg','WN-06':'wn06.jpg','WN-07':'wn07.jpg','3D-05':'3d05.jpg','3D-06':'3d06.jpg','EA-01':'v1.jpg','GH-02':'b2.jpg'};
 indexP();
-function money(v){if(v===''||v==null)return '';var n=Number(v);return 'від '+(n%1?String(n).replace('.',','):n)+' грн'}
+function money(v){if(v===''||v==null)return '';var n=Number(v);if(isNaN(n))return '';return 'від '+Math.ceil(n-1e-9)+' грн'}
 function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var THEMES=['brand','kokhannia','rodyna','ukraina','zyma','vesna-velykden','lito','osin','halloween'];
 function pickCampaign(){
@@ -978,9 +1018,8 @@ function set(id,push){
  document.getElementById('h1').textContent=t.id==='halloween'?'Формуємо емоції. Бережемо миті — подарунки на Геловін':(t.title||'');if(t.id==='halloween'){hwOn();ready(t.id);return}else hwOff();
  document.getElementById('kicker').textContent=t.kicker;document.getElementById('h1').textContent=t.title;document.getElementById('lead').innerHTML=t.lead;hint.textContent='';
  var many=t.sl&&t.sl.length>1;
- var h='<div class="abox"><div class="arch" id="arch">';
- if(t.sl){t.sl.forEach(function(s,i){h+='<div class="sl'+(i?'':' on')+'">'+(s.vid?'<video muted loop playsinline preload="none" poster="'+s.poster+'" aria-label="'+s.alt+'"><source src="'+s.src+'" type="video/mp4"></video>':'<img src="'+s.src+'" alt="'+s.alt+'"'+(i?' loading="lazy"':'')+'>')+'</div>'})}
- else h+='<div class="ph0" aria-hidden="true">'+logo(t.id)+'</div><p class="need0">[ПОТРІБНО: фото кампанії від замовниці]</p>';
+ var h='<div class="abox pdbox"><div class="pdeck" id="arch">';
+ (t.sl||[]).forEach(function(s,i){var n=t.sl.length;h+='<figure class="pdc sl'+(i?'':' on q0')+(n>1&&i===1?' q1':'')+(n>2&&i===n-1?' q2':'')+'"><div class="pph"><img src="'+s.src+'" alt="'+esc(s.alt)+'"'+(i>2?' loading="lazy"':'')+'></div><figcaption>'+esc(s.name||s.alt)+'</figcaption></figure>'});
  h+='</div><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>';
  if(t.id==='rodyna')h+='<div class="kid" id="kid">'+mk()+'</div>';
  h+='<button class="mkb" id="mkb" aria-label="Моментик: '+t.mt+'">'+mk(t.acc)+'</button>'+tip('t-mk',t.mt);
@@ -1010,7 +1049,7 @@ function startCar(t){car.i=0;car.n=t.sl.length;show(0);
 function auto(){clearInterval(car.t);if(!car.paused)car.t=setInterval(function(){show(car.i+1)},4500)}
 function stopAuto(){car.paused=true;var pz=document.getElementById('cpz');if(pz){pz.innerHTML=IC.play;pz.setAttribute('aria-label','Відтворити')}clearInterval(car.t)}
 function show(i){var sl=stage.querySelectorAll('.sl'),d=stage.querySelectorAll('#dots i');car.i=(i+car.n)%car.n;
- sl.forEach(function(s,k){s.classList.toggle('on',k===car.i);var v=s.querySelector('video');if(v){if(k===car.i&&!RM)v.play().catch(function(){});else v.pause()}});
+ sl.forEach(function(s,k){var r=(k-car.i+car.n)%car.n;s.classList.toggle('q0',r===0);s.classList.toggle('q1',r===1);s.classList.toggle('q2',car.n>2&&r===car.n-1);s.classList.toggle('q3',car.n>3&&r===2);s.classList.toggle('q4',car.n>4&&r===car.n-2);s.classList.toggle('on',k===car.i);var v=s.querySelector('video');if(v){if(k===car.i&&!RM)v.play().catch(function(){});else v.pause()}});
  var cn=document.getElementById('cnt');if(cn)cn.textContent=(car.i+1)+' / '+car.n;caption(cur,car.i)}
 function caption(t,i){var c=document.getElementById('aicap'),s=t.sl[i];if(!c)return;c.innerHTML=(s.sec?'<b>'+s.sec+'</b> · '+s.name:'')+''}
 function bindMk(el,t){if(!el)return;var go=function(){var s=el.querySelector('svg');if(s&&t.fx!=='petals'&&t.fx!=='leaves'){s.classList.add('wink');setTimeout(function(){s.classList.remove('wink')},450)}
@@ -1056,6 +1095,8 @@ function hwOn(){size();document.getElementById('hint2').textContent=matchMedia('
  if(RM){shade.style.setProperty('--r','9999px');ghosts.forEach(function(g){g.classList.add('lit')})}else if(!hwRaf)hwRaf=requestAnimationFrame(frame);
  tick();clearInterval(cdT);cdT=setInterval(tick,1000);dshow(di);clearInterval(dT);if(!RM)dT=setInterval(function(){if(!dPaused)dshow(di+1)},4000)}
 function hwOff(){clearInterval(cdT);clearInterval(dT);pcs.forEach(function(p){var v=p.querySelector('video');if(v)v.pause()})}
+ghosts.forEach(function(g){g.addEventListener('pointerdown',function(){g.classList.add('tap','lit');clearTimeout(g._t);g._t=setTimeout(function(){g.classList.remove('tap')},1600);if(g.classList.contains('g1'))done('#tgh')})});
+top.addEventListener('pointerdown',function(e){if(html.dataset.theme!=='halloween')return;var r=top.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top;last=performance.now()});
 addEventListener('resize',size);
 var sw=document.getElementById('sw'),colors=['#c6ff00','#ff2e93','#ff8a00','#00e5ff','#fff4e0'];
 document.getElementById('spider').addEventListener('click',function(){done('#tsp');if(RM)return;sw.classList.add('scared');setTimeout(function(){sw.classList.remove('scared')},900);
@@ -1192,7 +1233,8 @@ document.getElementById('doneMk').innerHTML=html.dataset.theme==='halloween'?'<s
 
 function hwDates(){if(!CUR||CUR.theme!=='halloween')return;var man=CUR.hero_manual_until&&CUR.hero_manual_until>=TODAY&&(!CUR.date_first||CUR.hero_manual_until>CUR.date_first),d=man?CUR.hero_manual_until:CUR.date_first;if(!d)return;
  var t=new Date(d+'T00:00:00+02:00');if(man)t=new Date(t.getTime()+864e5);end=t.getTime();
- document.getElementById('hwpill').textContent=man?'Геловін-набори до '+fmtD(d):'Геловін, '+fmtD(d)}
+ document.getElementById('hwpill').textContent=man?'Геловін-набори до '+fmtD(d):'Геловін, '+fmtD(d);
+ document.getElementById('cdl').textContent=man?'До кінця замовлень лишилось:':'До Геловіну лишилось:'}
 function start(){CUR=pickCampaign();hwDates();var th=Q.get('theme');var id=T.some(function(x){return x.id===th})?th:(CUR?CUR.theme:'brand');
  var tt=T.filter(function(x){return x.id===id})[0];if(tt&&CUR&&id!=='halloween'&&id!=='brand'){tt.title=CUR.title;if(CUR.subtitle)tt.lead=esc(CUR.subtitle)}
  if(tt&&tt.lead&&tt.lead.indexOf('ПОТРІБНО')>=0)tt.lead='Подарунки до свята — набори, 3D-друк і значки';
@@ -1211,6 +1253,6 @@ if(CFG.catalogUrl){
   if(nid!==oid&&!Q.get('theme'))start();else{CUR=nc||CUR;hwDates();buildSections()}}).catch(function(){})}
 })();
 </script>
-<script src="assets/fm-order.js"></script>
+<script src="assets/fm-order.js?v=20261104"></script>
 </body>
 </html>
