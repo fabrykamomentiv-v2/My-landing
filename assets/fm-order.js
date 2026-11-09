@@ -1,4 +1,5 @@
 /* Фабрика моментів — форма «Замовити момент», джерело переходу й події аналітики.
+   Версія 1.2, 04.11.2026: список «Що замовляєте» оновлюється разом із даними таблиці; набори згруповано за святами; набори без ціни — «скоро».
    Версія 1.1, 04.11.2026: перевірка номера телефону і запис у вигляді +380 XX XXX XX XX.
    Версія 1.0, 29.10.2026. Заявка йде в скрипт заявок (config.js → ordersUrl). */
 (function () {
@@ -40,21 +41,32 @@
   if (!form) return;
   var sel = form.elements.product, opened = 0, started = false, sending = false;
 
-  // Список товарів — з даних сайту (app вже заповнив window.FM_PRODUCTS)
+  // Список товарів — з даних сайту. Сайт викликає fmFillProducts() щоразу, коли приходять свіжі дані таблиці.
+  // Набори — групами за святами в порядку каталогу (window.FM_SETGROUPS: у продажу → скоро → минулі).
   function fillProducts() {
+    var keep = sel.options[sel.selectedIndex] ? (sel.options[sel.selectedIndex].dataset.id || sel.value) : '';
     var list = (window.FM_PRODUCTS || []).slice().sort(function (a, b) { return (a.sort || 99) - (b.sort || 99); });
-    var groups = { sets: 'Набори', '3d': '3D-друк', badges: 'Значки', packaging: 'Пакування' };
-    var html = '<option value="">Ще не вирішили — допоможемо обрати</option>';
-    Object.keys(groups).forEach(function (g) {
-      var items = list.filter(function (p) { return p.section === g; });
-      if (!items.length) return;
-      html += '<optgroup label="' + groups[g] + '">' + items.map(function (p) {
-        return '<option value="' + esc(p.form_label || p.title) + '" data-id="' + esc(p.item_id) + '">' + esc(p.form_label || p.title) + '</option>';
-      }).join('') + '</optgroup>';
+    var by = {}; list.forEach(function (p) { by[p.item_id] = p; });
+    function opt(p) {
+      var t = p.form_label || p.title;
+      if (p.section === 'sets' && (p.price_from === '' || p.price_from == null)) t += ' — скоро';
+      return '<option value="' + esc(t) + '" data-id="' + esc(p.item_id) + '">' + esc(t) + '</option>';
+    }
+    function grp(label, items) { return items.length ? '<optgroup label="' + esc(label) + '">' + items.map(opt).join('') + '</optgroup>' : ''; }
+    var html = '<option value="">Ще не вирішили — допоможемо обрати</option>', used = {};
+    (window.FM_SETGROUPS || []).forEach(function (g) {
+      var items = (g.ids || []).map(function (id) { return by[id]; }).filter(function (p) { return p && p.section === 'sets' && !used[p.item_id]; });
+      items.forEach(function (p) { used[p.item_id] = 1; });
+      html += grp('Набори · ' + g.label, items);
     });
+    html += grp('Набори', list.filter(function (p) { return p.section === 'sets' && !used[p.item_id]; }));
+    var groups = { '3d': '3D-друк', badges: 'Значки', packaging: 'Пакування' };
+    Object.keys(groups).forEach(function (g) { html += grp(groups[g], list.filter(function (p) { return p.section === g; })); });
     html += '<option value="Інше / індивідуальне">Інше / індивідуальне</option>';
     sel.innerHTML = html;
+    if (keep) for (var i = 0; i < sel.options.length; i++) if ((sel.options[i].dataset.id || sel.options[i].value) === keep) { sel.selectedIndex = i; break; }
   }
+  window.fmFillProducts = fillProducts;
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   // Відкрити форму з вибраним товаром / приводом (викликають кнопки «Замовити»)
