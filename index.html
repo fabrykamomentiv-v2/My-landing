@@ -552,7 +552,8 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
 [data-theme=zyma] .pdc{box-shadow:0 14px 30px rgba(5,20,50,.4)}
 @media(max-width:899px){.pdc figcaption{font-size:13.5px;padding:8px 4px 11px}.pdc.q1{transform:translate(36%,14px) rotate(7deg) scale(.82)}.pdc.q2{transform:translate(-36%,20px) rotate(-8deg) scale(.78)}}
 @media(prefers-reduced-motion:reduce){.pdc{transition:none}}
-#payField[hidden],#payField label[hidden]{display:none!important}
+#payField[hidden],#payField label[hidden],.o3d[hidden]{display:none!important}.o3d{display:flex;flex-direction:column;gap:14px}
+.d3note{font-size:14px;line-height:1.45;opacity:.8;margin:2px 0 14px}.pz{align-self:center}
 </style>
 </head>
 <body>
@@ -781,13 +782,26 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
     <label><input type="radio" name="messenger" value="Без різниці" checked><span>Без різниці</span></label>
    </fieldset>
    <label class="fld"><span>Що замовляєте</span><select name="product"></select></label>
+   <div class="o3d" id="d3Field" hidden>
+    <fieldset class="fld pills"><legend>Чи є готова 3D-модель?</legend>
+     <label><input type="radio" name="model3d" value="Так, надішлю файл"><span>Так, надішлю файл</span></label>
+     <label><input type="radio" name="model3d" value="Ні, потрібне моделювання"><span>Ні, потрібне моделювання</span></label>
+     <label><input type="radio" name="model3d" value="Не знаю"><span>Не знаю</span></label>
+    </fieldset>
+    <label class="fld"><span>Приблизний розмір, см</span><input name="size_cm" maxlength="30" placeholder="Наприклад, 10 або 10×15"></label>
+    <p class="d3note">Моделювання — від 100 грн, далі 150 грн/год. Ціну друку називаємо після готової моделі. Термінові — доплата 30–60 %. Строки можуть зсуватися через відключення світла. Фото чи файл моделі надішлете нам у месенджер.</p>
+   </div>
    <div class="grid2">
     <label class="fld"><span>Привід</span><input name="occasion" maxlength="80" placeholder="Наприклад, Геловін"></label>
     <label class="fld"><span>Кому даруєте</span><select name="whom"><option value="">—</option><option>Дитині</option><option>Рідним</option><option>Друзям</option><option>Колегам</option><option>Собі</option><option>Комусь іншому</option></select></label>
    </div>
    <div class="grid2">
     <label class="fld"><span>Бажана дата отримання</span><input name="desired_date" type="date"></label>
+    <label class="fld"><span>Скільки штук</span><input name="quantity" type="number" inputmode="numeric" min="1" max="9999" step="1" value="1"></label>
+   </div>
+   <div class="grid2">
     <label class="fld"><span>Email (за бажанням)</span><input name="email" type="email" autocomplete="email" maxlength="80"><em>Перевірте email</em><small>Надішлемо підтвердження заявки</small></label>
+    <label class="ck pz"><input type="checkbox" name="personalization"><span>Хочу персоналізацію: ім’я, напис, фото чи ідея для 3D</span></label>
    </div>
    <fieldset class="fld pills" id="payField" hidden><legend>Як зручніше оплатити?</legend>
     <label><input type="radio" name="payment" value="Карткою (передоплата)"><span>Карткою</span></label>
@@ -1279,6 +1293,6 @@ if(CFG.catalogUrl){
   if(nid!==oid&&!Q.get('theme'))start();else{CUR=nc||CUR;hwDates();buildSections()}}).catch(function(){})}
 })();
 </script>
-<script src="assets/fm-order.js?v=20261104b"></script>
+<script src="assets/fm-order.js?v=20261111"></script>
 </body>
 </html>
