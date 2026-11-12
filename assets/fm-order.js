@@ -1,4 +1,5 @@
 /* Фабрика моментів — форма «Замовити момент», джерело переходу й події аналітики.
+   Версія 1.3, 11.11.2026: персоналізація, кількість, блок «Деталі 3D-замовлення»; кампанія — за товаром; «Кому даруєте» в статистиці.
    Версія 1.2, 04.11.2026: список «Що замовляєте» оновлюється разом із даними таблиці; набори згруповано за святами; набори без ціни — «скоро».
    Версія 1.1, 04.11.2026: перевірка номера телефону і запис у вигляді +380 XX XXX XX XX.
    Версія 1.0, 29.10.2026. Заявка йде в скрипт заявок (config.js → ordersUrl). */
@@ -66,7 +67,27 @@
     sel.innerHTML = html;
     if (keep) for (var i = 0; i < sel.options.length; i++) if ((sel.options[i].dataset.id || sel.options[i].value) === keep) { sel.selectedIndex = i; break; }
   }
-  window.fmFillProducts = fillProducts;
+  window.fmFillProducts = function () { fillProducts(); upd3(); };
+
+  // Блок «Деталі 3D-замовлення» — лише для індивідуального 3D, моделювання й брендованих виробів
+  var D3IDS = ['3D-03', '3D-04', 'B2B-01'], d3 = document.getElementById('d3Field'), cm = form.elements.comment, cmPh = cm.placeholder;
+  function selId() { var o = sel.options[sel.selectedIndex]; return o && o.dataset.id || ''; }
+  function upd3() {
+    if (!d3) return;
+    var on = D3IDS.indexOf(selId()) >= 0;
+    d3.hidden = !on;
+    cm.placeholder = on ? 'Опишіть, що надрукувати: для чого, колір, напис, приклади' : cmPh;
+    if (!on) { [].forEach.call(form.querySelectorAll('[name=model3d]'), function (r) { r.checked = false; }); form.elements.size_cm.value = ''; }
+  }
+  sel.addEventListener('change', upd3);
+  // Кампанія заявки: сезонний товар — його кампанія; товар на весь рік — без кампанії; товар не обрано — кампанія сторінки
+  function campaignFor(pid, fallback) {
+    var p = (window.FM_PRODUCTS || []).filter(function (x) { return x.item_id === pid; })[0];
+    var c = p && (p.campaigns || []).filter(function (x) { return x !== 'always'; });
+    if (!p) return fallback;                 // «Ще не вирішили» / «Інше» — кампанія сторінки
+    if (!c.length) return '';                // товар на весь рік — без кампанії
+    return c.indexOf(fallback) >= 0 ? fallback : c[0];
+  }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   // Відкрити форму з вибраним товаром / приводом (викликають кнопки «Замовити»)
@@ -76,6 +97,7 @@
     if (opts.productId) {
       for (var i = 0; i < sel.options.length; i++) if (sel.options[i].dataset.id === opts.productId) { sel.selectedIndex = i; break; }
     } else if (opts.other) sel.value = 'Інше / індивідуальне';
+    upd3();
     if (opts.occasion) form.elements.occasion.value = opts.occasion;
     form.elements.campaign_id.value = opts.campaignId || window.FM_CAMPAIGN || '';
     var sec = document.getElementById('zamovyty');
@@ -151,9 +173,14 @@
       campaign_id: f.campaign_id.value, occasion: f.occasion.value.trim(), whom: f.whom.value,
       desired_date: f.desired_date.value, payment: f.payment ? f.payment.value : '', comment: f.comment.value.trim(),
       consent_terms: f.consent_terms.checked, consent_reminders: f.consent_reminders.checked,
+      personalization: f.personalization.checked,
+      quantity: String(Math.max(1, parseInt(f.quantity.value, 10) || 1)),
+      model3d: d3 && !d3.hidden ? ((form.querySelector('[name=model3d]:checked') || {}).value || '') : '',
+      size_cm: d3 && !d3.hidden ? f.size_cm.value.trim() : '',
       website: f.website.value, fill_ms: opened ? Date.now() - opened : 0,
       page: location.pathname + location.hash, request_id: f.request_id.value
     };
+    data.campaign_id = campaignFor(data.product_id, data.campaign_id);
     var src = sourceFields(); for (var k in src) data[k] = src[k];
     sending = true;
     var btn = form.querySelector('[type=submit]'); btn.disabled = true; btn.textContent = 'Надсилаємо…';
@@ -162,9 +189,9 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (res && res.ok) {
-          fmEvent('generate_lead', { fm_product: data.product_id, fm_campaign: data.campaign_id });
+          fmEvent('generate_lead', { fm_product: data.product_id, fm_campaign: data.campaign_id, fm_whom: data.whom || '', fm_personal: data.personalization ? 'так' : 'ні', fm_qty: data.quantity });
           showDone(data.name, res.order_id);
-          form.reset(); f.request_id.value = rid(); opened = 0; started = false;
+          form.reset(); upd3(); f.request_id.value = rid(); opened = 0; started = false;
         } else if (res && res.error === 'invalid') {
           (res.fields || []).forEach(function (n) { setErr(n, true); });
           msg.textContent = 'Перевірте позначені поля.';
@@ -201,5 +228,5 @@
     }
   }
 
-  fillProducts();
+  fillProducts(); upd3();
 })();
