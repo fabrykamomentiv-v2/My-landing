@@ -955,14 +955,26 @@ var PBY={};function indexP(){PBY={};DATA.products.forEach(function(p){PBY[p.item
 /* Поле «Як зручніше оплатити?» — лише коли в таблиці form_payment_show = так; варіанти — за pay_card / pay_cod / pay_pickup (09.11.2026) */
 function payUpd(){var f=document.getElementById('payField');if(!f)return;var F={};(DATA.facts||[]).forEach(function(x){F[x.key]=String(x.value||'').trim().toLowerCase()});var on=F.form_payment_show==='так';f.hidden=!on;var M={'Карткою (передоплата)':'pay_card','Накладений платіж':'pay_cod','Під час самовивозу':'pay_pickup'};[].forEach.call(f.querySelectorAll('input'),function(i){var k=M[i.value];if(k){i.closest('label').hidden=F[k]!=='так';if(F[k]!=='так'&&i.checked){i.checked=false;f.querySelector('input[value=""]').checked=true}}})}
 /* Фото з таблиці «Матеріали» (Cloudinary). Поки там немає адрес — фото беруться з папки img, як раніше. */
-var MEDIA={};function indexM(){MEDIA={};(DATA.media||[]).forEach(function(m){if(!m||!m.url||!m.owner_id||/\.(mp4|mov)$/i.test(m.url))return;(MEDIA[m.owner_id]=MEDIA[m.owner_id]||[]).push(m)});
- Object.keys(MEDIA).forEach(function(k){MEDIA[k].sort(function(a,b){return(a.role==='картка'?0:1)-(b.role==='картка'?0:1)||(a.sort||99)-(b.sort||99)})})}
+/* Фото слайдів і стрічок з Cloudinary (15.11.2026): назва файлу на сайті → назва файлу на Диску. Немає в «Матеріалах» — фото з папки img. */
+var MAPF={"hw01.jpg":"HW-01 01.jpg","hw01-2.jpg":"HW-01 02 ШІ.jpg","hw02.jpg":"HW-02 01.jpg","hw02-2.jpg":"HW-02 02 ШІ.jpg","hw03.jpg":"HW-03 01.jpg","hw04.jpg":"HW-04 01.jpg","hw04-2.jpg":"HW-04 02 ШІ.jpg","hw04-3.jpg":"HW-04 03 ШІ.jpg","hw05.jpg":"HW-05 01 ШІ.jpg","hw06.jpg":"HW-06 01.jpg","hw07.jpg":"HW-07 01.jpg","hw08.jpg":"HW-08 01 ШІ.jpg","hw09.jpg":"HW-09 01 ВІЗ.jpg","z6.jpg":"WN-01 01 ШІ.jpg","wn02.jpg":"WN-02 01 ШІ.jpg","wn03.jpg":"WN-03 01 ШІ.jpg","wn04.jpg":"WN-04 01 ШІ.jpg","wn05.jpg":"WN-05 01 ШІ.jpg","wn06.jpg":"WN-06 01 ШІ.jpg","wn06-2.jpg":"WN-06 02 ШІ.jpg","wn07.jpg":"WN-07 01 ШІ.jpg","z7.jpg":"WN-08 01.jpg","ad1.jpg":"AD-01 01.jpg","ad2.jpg":"AD-02 01.jpg","ad3.jpg":"AD-03 01.jpg","ad4.jpg":"AD-04 01.jpg","v1.jpg":"EA-01 06.jpg","b2.jpg":"GH-02 01.jpg","3d05.jpg":"3D-05 01.jpg","3d05-2.jpg":"3D-05 02.jpg","3d05-3.jpg":"3D-05 03.jpg","3d06.jpg":"3D-06 01.jpg","3d06-2.jpg":"3D-06 02 ШІ.jpg","pk1.jpg":"PK-01 01 ШІ.jpg","pk11.jpg":"PK-02 01.jpg","pk4.jpg":"PK-02 02.jpg","pk8.jpg":"PK-02 03.jpg","pk9.jpg":"PK-02 04.jpg","pk10.jpg":"PK-02 05.jpg","pk5.jpg":"PK-02 06.jpg","ghosts.jpg":"3d 02 ОБКЛ.jpg","p3d1.jpg":"3d 03.jpg","p3d2.jpg":"3d 04.jpg","p3d3.jpg":"3d 05.jpg","p3d4.jpg":"3d 06.jpg","p3d5.jpg":"3d 07.jpg","p3d6.jpg":"3d 08.jpg","ve2.jpg":"3d 09.jpg","ve6.jpg":"3d 10.jpg","p3d7.jpg":"3d 11.jpg","p3d8.jpg":"3d 12.jpg","bd3.jpg":"badges 01.jpg","bd4.jpg":"badges 02.jpg","bd1.jpg":"badges 03.jpg","bd5.jpg":"badges 04.jpg","bd2.jpg":"badges 05 ВІЗ.jpg","pk6.jpg":"packaging 01.jpg","pk12.jpg":"packaging 02.jpg","pk7.jpg":"packaging 03.jpg","hwposter.jpg":"halloween2026 02 ОБКЛ.jpg","z2.jpg":"advent2026 01 ЕКРАН ШІ.jpg","z8.jpg":"novyirik2026 01 ЕКРАН.jpg","lt1.jpg":"kupala2027 01 ЕКРАН.jpg","lt2.jpg":"kupala2027 02 ЕКРАН.jpg"};
+var BYNAME={},MROLE={'картка':1,'галерея':1};
+function R(s,w){if(!s||String(s).indexOf('img/')!==0)return s;var n=MAPF[String(s).slice(4)],u=n&&BYNAME[n];return u?cld(u,w||900):s}
+function stripFill(sel,own){var box=document.querySelector(sel);if(!box)return;var L=(MEDIA[own]||[]).filter(function(m){return MROLE[m.role]});if(!L.length)return;
+ L=L.slice().sort(function(a,b){return(+a.sort||99)-(+b.sort||99)});
+ box.innerHTML=L.map(function(m){return '<div class="pic"><img src="'+esc(cld(m.url,900))+'" alt="'+esc(m.alt||'')+'" loading="lazy"></div>'}).join('')}
+function fmSwap(){var q=document.querySelectorAll('img[src^="img/"]');for(var i=0;i<q.length;i++){var a=q[i].getAttribute('src'),r=R(a);if(r!==a)q[i].src=r}
+ var v=document.querySelectorAll('video[poster^="img/"]');for(var j=0;j<v.length;j++){var p=v[j].getAttribute('poster'),r2=R(p);if(r2!==p)v[j].poster=r2}
+ stripFill('#lab .pics','3d');stripFill('#badges .pics','badges');stripFill('#pack .pics','packaging')}
+var MEDIA={};function indexM(){MEDIA={};BYNAME={};(DATA.media||[]).forEach(function(m){if(m&&m.url&&m.file_name&&!/\.(mp4|mov)$/i.test(m.url))BYNAME[String(m.file_name)]=m.url});
+ (DATA.media||[]).forEach(function(m){if(!m||!m.url||!m.owner_id||/\.(mp4|mov)$/i.test(m.url))return;(MEDIA[m.owner_id]=MEDIA[m.owner_id]||[]).push(m)});
+ Object.keys(MEDIA).forEach(function(k){MEDIA[k].sort(function(a,b){return(a.role==='картка'?0:1)-(b.role==='картка'?0:1)||(a.sort||99)-(b.sort||99)})});try{fmSwap()}catch(e){}}
 function cld(u,w){return /res\.cloudinary\.com\/.+\/upload\//.test(u)&&!/\/upload\/[a-z]{1,2}_/.test(u)?u.replace('/upload/','/upload/f_auto,q_auto,c_limit,w_'+w+'/'):u}
-function photoOf(id,w){var m=MEDIA[id];return m&&m[0]?cld(m[0].url,w||800):(IMG[id]?'img/'+IMG[id]:'')}
+function MP(id){return(MEDIA[id]||[]).filter(function(m){return MROLE[m.role]})}
+function photoOf(id,w){var m=MP(id);return m&&m[0]?cld(m[0].url,w||800):(IMG[id]?'img/'+IMG[id]:'')}
 window.fmPhotoOf=photoOf;
 /* Галерея набору: фото з таблиці «Матеріали» (Cloudinary), інакше — з папки img */
 var GAL={'HW-01':['hw01.jpg','hw01-2.jpg'],'HW-02':['hw02.jpg','hw02-2.jpg'],'HW-04':['hw04.jpg','hw04-2.jpg','hw04-3.jpg'],'WN-06':['wn06.jpg','wn06-2.jpg'],'3D-05':['3d05.jpg','3d05-2.jpg','3d05-3.jpg'],'3D-06':['3d06.jpg','3d06-2.jpg'],'GH-02':['b2.jpg']};
-function photosOf(id,w){var m=MEDIA[id];if(m&&m.length)return m.map(function(x){return{src:cld(x.url,w||1000),alt:x.alt||''}});var g=GAL[id]||(IMG[id]?[IMG[id]]:[]);return g.map(function(f){return{src:'img/'+f,alt:''}})}
+function photosOf(id,w){var m=MP(id);if(m&&m.length)return m.map(function(x){return{src:cld(x.url,w||1000),alt:x.alt||''}});var g=GAL[id]||(IMG[id]?[IMG[id]]:[]);return g.map(function(f){return{src:'img/'+f,alt:''}})}
 var IMG={'HW-01':'hw01.jpg','HW-02':'hw02.jpg','HW-03':'hw03.jpg','HW-04':'hw04.jpg','HW-05':'hw05.jpg','HW-06':'hw06.jpg','HW-07':'hw07.jpg','HW-08':'hw08.jpg','HW-09':'hw09.jpg','AD-01':'ad1.jpg','AD-02':'ad2.jpg','AD-03':'ad3.jpg','AD-04':'ad4.jpg','WN-01':'z6.jpg','WN-02':'wn02.jpg','WN-03':'wn03.jpg','WN-04':'wn04.jpg','WN-05':'wn05.jpg','WN-06':'wn06.jpg','WN-07':'wn07.jpg','WN-08':'z7.jpg','3D-05':'3d05.jpg','3D-06':'3d06.jpg','EA-01':'v1.jpg','GH-02':'b2.jpg'};
 indexP();
 function money(v){if(v===''||v==null)return '';var n=Number(v);if(isNaN(n))return '';return 'від '+Math.ceil(n-1e-9)+' грн'}
@@ -1048,7 +1060,7 @@ function set(id,push){
  document.getElementById('kicker').textContent=t.kicker;document.getElementById('h1').textContent=t.title;document.getElementById('lead').innerHTML=t.lead;hint.textContent='';
  var many=t.sl&&t.sl.length>1;
  var h='<div class="abox pdbox"><div class="pdeck" id="arch">';
- (t.sl||[]).forEach(function(s,i){var n=t.sl.length;h+='<figure class="pdc sl'+(i?'':' on q0')+(n>1&&i===1?' q1':'')+(n>2&&i===n-1?' q2':'')+'"'+(s.go?' data-go="'+esc(s.go)+'"':'')+'><div class="pph"><img src="'+s.src+'" alt="'+esc(s.alt)+'"'+(i>2?' loading="lazy"':'')+'></div><figcaption>'+esc(s.name||s.alt)+'</figcaption></figure>'});
+ (t.sl||[]).forEach(function(s,i){var n=t.sl.length;h+='<figure class="pdc sl'+(i?'':' on q0')+(n>1&&i===1?' q1':'')+(n>2&&i===n-1?' q2':'')+'"'+(s.go?' data-go="'+esc(s.go)+'"':'')+'><div class="pph"><img src="'+R(s.src)+'" alt="'+esc(s.alt)+'"'+(i>2?' loading="lazy"':'')+'></div><figcaption>'+esc(s.name||s.alt)+'</figcaption></figure>'});
  h+='</div><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>';
  if(t.id==='rodyna')h+='<div class="kid" id="kid">'+mk()+'</div>';
  h+='<button class="mkb" id="mkb" aria-label="Моментик: '+t.mt+'">'+mk(t.acc)+'</button>'+tip('t-mk',t.mt);
@@ -1097,7 +1109,7 @@ function makeSnow(){for(var i=0;i<28;i++){var f=document.createElement('i');f.st
 
 /* --- Halloween --- */
 var top=document.getElementById('top'),shade=document.getElementById('shade'),hwRaf=null,deck=document.getElementById('deck'),di=0,dT=null,dPaused=RM;
-deck.innerHTML=HW.map(function(s,i){return '<figure class="pc" data-i="'+i+'" data-pid="'+HWID[i]+'"><div class="ph">'+(s.vid?'<video muted loop playsinline preload="none" poster="'+s.poster+'"><source src="'+s.src+'" type="video/mp4"></video>':'<img src="'+s.src+'" alt="Набір «'+s.alt+'»" loading="lazy">')+'</div><figcaption>'+(s.name||s.alt)+(s.vid?'<small>Вдень білі — у темряві світяться</small>':'')+'</figcaption></figure>'}).join('');
+deck.innerHTML=HW.map(function(s,i){return '<figure class="pc" data-i="'+i+'" data-pid="'+HWID[i]+'"><div class="ph">'+(s.vid?'<video muted loop playsinline preload="none" poster="'+R(s.poster)+'"><source src="'+s.src+'" type="video/mp4"></video>':'<img src="'+R(s.src)+'" alt="Набір «'+s.alt+'»" loading="lazy">')+'</div><figcaption>'+(s.name||s.alt)+(s.vid?'<small>Вдень білі — у темряві світяться</small>':'')+'</figcaption></figure>'}).join('');
 var pcs=deck.querySelectorAll('.pc');
 function dshow(i){di=(i+pcs.length)%pcs.length;pcs.forEach(function(p,k){var r=(k-di+pcs.length)%pcs.length;p.className='pc'+(r===0?' p0':r===1?' p1':r===pcs.length-1?' p2':r===2?' p3':r===pcs.length-2?' p4':'');p.setAttribute('aria-hidden',r!==0);var v=p.querySelector('video');if(v){if(r===0&&!RM)v.play().catch(function(){});else v.pause()}});document.getElementById('dcount').textContent=(di+1)+' / '+pcs.length}
 document.getElementById('dprev').onclick=function(){dPaused=true;dshow(di-1)};document.getElementById('dnext').onclick=function(){dPaused=true;dshow(di+1)};
