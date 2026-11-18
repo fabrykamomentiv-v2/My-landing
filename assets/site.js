@@ -1,5 +1,5 @@
 /* Фабрика моментів — спільний скрипт сайту.
-   Версія 1, 28.10.2026.
+   Версія 2, 18.11.2026: банер увімкнено, GTM-MZNHJWXN.
    Підключається на всіх сторінках: <script src="/assets/site.js" defer></script>
 
    ЩО РОБИТЬ
@@ -16,8 +16,8 @@
   'use strict';
 
   var SETTINGS = {
-    bannerEnabled: false,   // true — лише разом з gtmId, того самого дня
-    gtmId: '',              // 'GTM-XXXXXXX'
+    bannerEnabled: true,    // true — лише разом з gtmId, того самого дня
+    gtmId: 'GTM-MZNHJWXN',  // контейнер «fabrykamomentiv.online»
     policyUrl: '/polityka-konfidentsiinosti/#cookies',
     consentDays: 182        // скільки пам'ятати вибір (≈ 6 місяців)
   };
