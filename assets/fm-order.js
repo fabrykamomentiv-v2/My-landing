@@ -189,7 +189,7 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (res && res.ok) {
-          fmEvent('generate_lead', { fm_product: data.product_id, fm_campaign: data.campaign_id, fm_whom: data.whom || '', fm_personal: data.personalization ? 'так' : 'ні', fm_qty: data.quantity });
+          fmEvent('generate_lead', { fm_order_id: res.order_id || '', fm_product: data.product_id, fm_campaign: data.campaign_id, fm_whom: data.whom || '', fm_personal: data.personalization ? 'так' : 'ні', fm_qty: data.quantity });
           showDone(data.name, res.order_id);
           form.reset(); upd3(); f.request_id.value = rid(); opened = 0; started = false;
         } else if (res && res.error === 'invalid') {
