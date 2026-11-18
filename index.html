@@ -554,6 +554,21 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
 @media(prefers-reduced-motion:reduce){.pdc{transition:none}}
 #payField[hidden],#payField label[hidden],.o3d[hidden]{display:none!important}.o3d{display:flex;flex-direction:column;gap:14px}
 .d3note{font-size:14px;line-height:1.45;opacity:.8;margin:2px 0 14px}.pz{align-self:center}
+/* 18.11.2026 — більший шрифт у картках і вікні набору; примітка до складу й плашка-попередження */
+.card .bd{gap:6px}
+.card b{font-size:19px}
+.card .pr{font-size:20px}
+.card .cn{font-size:16px;line-height:1.45;-webkit-line-clamp:3}
+.card .cnt{font-size:13px}
+.st{font-size:14px;padding:5px 11px}
+.acts2 button{font-size:16px;min-height:48px}
+.ninfo .npr{font-size:24px}
+.ninfo h4{font-size:18px}
+.ninfo ul{font-size:17px}
+.ninfo p{font-size:17px}
+.ninfo p.ncn{margin-top:8px;font-size:16px;font-style:italic}
+.nwarn{display:flex;gap:9px;align-items:flex-start;margin:12px 0 0;padding:11px 13px;border-radius:14px;background:#FFEBC2;color:#5C3A00;font:500 16px/1.45 var(--fm-font-body)}
+.nwarn svg{flex:0 0 20px;width:20px;height:20px;margin-top:1px}
 </style>
 </head>
 <body>
@@ -877,7 +892,7 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
 
 
 <script src="assets/config.js?v=20261102"></script>
-<script src="assets/data.js?v=20261111"></script>
+<script src="assets/data.js?v=20261118"></script>
 <script>
 (function(){
 var RM=matchMedia('(prefers-reduced-motion: reduce)').matches,html=document.documentElement;
@@ -1166,6 +1181,8 @@ function groups(){var by={},out=[];
  return out}
 function stTxt(g){return g.state==='live'?'У продажу':g.state==='soon'?'Замовлення з '+fmtD(g.from):'Сезон завершено — повторимо на запит'}
 function buyTxt(g){return g&&g.state==='soon'?'Заздалегідь':g&&g.state==='past'?'Запитати':'Замовити'}
+/* Речення з таблиці: без зайвих пробілів і переносів, з крапкою в кінці (18.11.2026) */
+function sent(x){x=String(x==null?'':x).replace(/\s+/g,' ').trim();return x&&!/[.!?…]$/.test(x)?x+'.':x}
 function partsOf(p){return p.contents?String(p.contents).split(';').map(function(x){return x.trim()}).filter(Boolean):[]}
 function priceOf(p){return p.price_from!==''&&p.price_from!=null?money(p.price_from):'Ціну уточнимо'}
 function card(p,g){var id=esc(p.item_id),im=photoOf(p.item_id,600),n=photosOf(p.item_id).length,pt=partsOf(p);
@@ -1250,9 +1267,10 @@ function openSet(pid,from){var p=PBY[pid];if(!p)return false;
  var pt=partsOf(p);
  document.getElementById('ninfo').innerHTML='<p class="npr">'+priceOf(p)+'</p>'+(g?'<span class="st st-'+g.state+'">'+esc(stTxt(g))+'</span>':'')
   +(pt.length?'<h4>Склад</h4><ul>'+pt.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')
+  +(sent(p.contents_note)?'<p class="ncn">'+esc(sent(p.contents_note))+'</p>':'')
+  +(function(){var w=[];if(p.not_under_3==='так')w.push('Не для дітей до 3 років: дрібні деталі.');if(sent(p.warning))w.push(sent(p.warning));return w.length?'<div class="nwarn" role="note"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A00" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>'+esc(w.join(' '))+'</span></div>':''})()
   +(p.size?'<p><b>Розмір:</b> '+esc(p.size)+'</p>':'')+(p.price_note?'<p>'+esc(p.price_note)+'</p>':'')
   +(p.lead_time?'<p><b>Строк виготовлення:</b> '+esc(p.lead_time)+'</p>':'')+(p.personalization?'<p><b>Персоналізація:</b> '+esc(p.personalization)+'</p>':'')
-  +(p.not_under_3==='так'?'<p class="n3">Не для дітей до 3 років: дрібні деталі.</p>':'')
   +(p.section==='sets'?'<p>Склад можна змінити в межах коробки. Остаточну суму погоджуємо в месенджері до оплати.</p>':'<p>Остаточну суму погоджуємо в месенджері до оплати.</p>');
  var sw=p.section==='sets'?'набір':'';document.getElementById('nbuy').textContent=g&&g.state==='soon'?'Замовити заздалегідь':g&&g.state==='past'?'Запитати про '+(sw||'виріб'):(sw?'Замовити цей набір':'Замовити');
  NS.hidden=false;NT.scrollLeft=0;NP.scrollTop=0;NP.style.transform='';document.body.style.overflow='hidden';
