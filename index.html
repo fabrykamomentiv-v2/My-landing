@@ -569,6 +569,8 @@ html.fm-wait .top{opacity:0;animation:fmShow 0s 1.2s forwards}
 .ninfo p.ncn{margin-top:8px;font-size:16px;font-style:italic}
 .nwarn{display:flex;gap:9px;align-items:flex-start;margin:12px 0 0;padding:11px 13px;border-radius:14px;background:#FFEBC2;color:#5C3A00;font:500 16px/1.45 var(--fm-font-body)}
 .nwarn svg{flex:0 0 20px;width:20px;height:20px;margin-top:1px}
+/* 22.11.2026 — опис набору в шторці (колонка description) */
+.ninfo p.ndesc{margin:12px 0 2px;color:#3B2A24;font-size:17px;line-height:1.55}
 .pdc figcaption .b3d{display:inline-block;margin-right:6px;padding:2px 7px 1px;border-radius:7px;background:#6C3BFF;color:#fff;font:800 11.5px/1.3 var(--fm-font-head);letter-spacing:.02em;vertical-align:2px}
 </style>
 </head>
@@ -907,7 +909,7 @@ var T=[
   tape:'Пакування з печаткою ★ Самовивіз в Апостоловому ★ Нова пошта та Укрпошта ★ 3D-друк на замовлення ★ '},
  {id:'halloween',name:'Геловін',c:'#c6ff00',ptr:'Тицяй, якщо не страшно!',tape:'Геловін 31.10 ★ Видача в Апостоловому ★ Нова пошта та Укрпошта ★ Привиди світяться в темряві ★ '},
  {id:'zyma',mt:'Підморгни мені!',name:'Зима',c:'#163A70',kicker:'Зимовий куточок',title:'Святвечір і Різдво',lead:'Набори на Святвечір і Різдво — 24–25 грудня та 6–7 січня. Крафтове пакування з печаткою за бажанням',acc:'scarf',fx:'snow',hint:'Торкніться сніжинки біля арки — вона засвітиться',ptr:'Тицяй сюди',
-  sl:[S(A['z1.jpg'],'Набір із двох горняток у коробці «З Новим роком та Різдвом Христовим»'),S(A['z2.jpg'],'Адвент-календарі на 24 віконця'),S(A['z3.jpg'],'Шоколадний Миколай у червоних подарункових коробках'),S(A['z4.jpg'],'Сніжинки з 3D-друку на ялинці: білі вдень і зелені в темряві'),S(A['zvid.mp4'],'Відео: дерев’яні фігурки для розпису',0,1,A['zvid.jpg']),S(A['z6.jpg'],'Зимовий набір: синя коробка з перламутровими кулями')],
+  sl:[S(A['z1.jpg'],'Набір із двох горняток у коробці «З Новим роком та Різдвом Христовим»'),S(A['z2.jpg'],'Адвент-календарі на 24 віконця'),S(A['z3.jpg'],'Шоколадний Миколай у червоних подарункових коробках'),S(A['z4.jpg'],'Сніжинки з 3D-друку на ялинці: білі вдень і зелені в темряві'),S(A['zvid.mp4'],'Відео: дерев’яні фігурки для розпису',0,1,A['zvid.jpg']),S(A['z6.jpg'],'Набір «Моя ялинка»: синя коробка з білими кульками для розпису')],
   tape:'Адвент ★ Миколай ★ Святвечір і Різдво ★ Новий рік ★ 3D-сніжинки, що світяться ★ '},
  {id:'vesna-velykden',mt:'Підморгни!',name:'Весна й Великдень',c:'#7CC85A',kicker:'Весняний куточок',title:'Благовіщення і Великдень',lead:'Великодні набори: яйця-сюрпризи з 3D-друку, солодощі й крафтове пакування',acc:'flower',fx:'egg',hint:'Торкніться яйця біля арки — воно розкриється',ptr:'Зазирни сюди',
   sl:[S(A['v1.jpg'],'Яйця-сюрпризи з 3D-друку з ажурним візерунком'),S(A['v2.jpg'],'Яйця-сюрпризи з 3D-друку з цукерками всередині'),S(A['v3.jpg'],'Яйця-сюрпризи з 3D-друку з цукерками всередині'),S(A['v4.jpg'],'Яйця-сюрпризи з 3D-друку з цукерками всередині'),S(A['v5.jpg'],'Яйця-сюрпризи з 3D-друку з цукерками серед квітів')],
@@ -920,7 +922,7 @@ var T=[
  {id:'rodyna',mt:'Поклич малого',tmp:1,sl:[L(S(A['x3d05.jpg'],'Відкрита коробка з 3D-друку з цукерками й серцем'),'3D-друк','Коробка із солодощами'),L(S(A['b4.jpg'],'Скринька-серце з 3D-друку з фоторамкою всередині'),'3D-друк','Скринька з родинним фото'),L(S(A['bd1.jpg'],'Закатні значки з власними фото та малюнками'),'Значки','Значки з вашими фото'),L(S(A['b3.jpg'],'Органайзер для олівців з 3D-друку'),'3D-друк','Органайзер для олівців')],name:'Родина',c:'#FFC233',kicker:'Родинний куточок',title:'День матері',lead:NEED,fx:'peek',hint:'Торкніться Моментика — малий визирне',ptr:'Тицяй сюди',tape:'День матері ★ День батька ★ Випускні ★ День знань ★ День вчителя ★ '}
 ];
 var ITEMS={'HW-01':['Франкенштейн',1,'hw01.jpg','Набір «Франкенштейн»: зелена коробка з обличчям монстра'],'HW-02':['Гарбуз',1,'hw02.jpg','Набір «Гарбуз»: помаранчева коробка-гарбуз'],'HW-03':['З кажанами',1,'hw03.jpg','Набір «З кажанами»'],
- 'AD-01':['Адвент-календар на 24 віконця',0,'ad01.jpg','Адвент-календарі на 24 віконця'],'WN-01':['Моя ялинка',0,'z6.jpg','Зимовий набір: синя коробка з перламутровими кулями'],'WN-02':['Сніговик-розмальовка',0,'wn02.jpg','Зимовий набір: сніговик для розфарбовування']};
+ 'AD-01':['Адвент-календар на 24 віконця',0,'ad1.jpg','Адвент-календарі на 24 віконця'],'WN-01':['Моя ялинка',0,'z6.jpg','Набір «Моя ялинка»: синя коробка з білими кульками для розпису'],'WN-02':['Сніговик-розмальовка',0,'wn02.jpg','Зимовий набір: сніговик для розфарбовування']};
 var CAMP=[{id:'halloween2026',t:'Геловін',start:'2026-10-17',first:'2026-10-31',end:'2026-10-31',items:['HW-01','HW-02','HW-03']},
  {id:'advent2026',t:'Адвент-календар',start:'2026-10-26',first:'2026-12-01',end:'2026-12-24',items:['AD-01']},
  {id:'mykolai2026',t:'День Святого Миколая',start:'2026-11-08',first:'2026-12-06',end:'2026-12-19',items:['WN-01','WN-02']},
@@ -943,7 +945,7 @@ var ORDER=['brand','kokhannia','rodyna','ukraina','zyma','vesna-velykden','lito'
 /* Фото й тексти тем (погоджено замовницею 03–04.11.2026) */
 (function(){function g(id){return T.filter(function(x){return x.id===id})[0]}
  function N(f,n,a,go){var o=S(A[f],a||n);o.name=n;if(go)o.go=go;return o}
- g('zyma').sl=[N('z3.jpg','Шоколадний Миколай','Шоколадний Миколай у червоних подарункових коробках','WN-05'),N('z2.jpg','Адвент-календарі','Адвент-календарі на 24 віконця','tab:AD-01'),N('z6.jpg','Моя ялинка','Зимовий набір: синя коробка з перламутровими кулями','WN-01'),N('z1.jpg','Горнятко з солодощами','Набір із двох горняток у святковій коробці','WN-09'),N('wn06.jpg','Горнятко','Набір: горнятко, льодяник-посох, свічки й листівка в червоній коробці','WN-06'),N('wn02.jpg','Сніговик-розмальовка','Набір «Сніговик-розмальовка»','WN-02'),N('wn03.jpg','Дерев’яна розмальовка','Дерев’яна розмальовка до Нового року','WN-03'),N('wn04.jpg','Чарівна паличка','Набір «Чарівна паличка»','WN-04'),N('wn07.jpg','Кулі з солодощами','Набір «Кулі з солодощами»','WN-07'),N('z4.jpg','Сніжинки, що світяться','Сніжинки з 3D-друку на ялинці','3D-05'),N('3d06.jpg','Ялинкова іграшка з вертепом','Ялинкова іграшка з 3D-друку з різдвяним вертепом','3D-06'),N('z8.jpg','Новорічна фігурка коня','Фігурка коня з 3D-друку на підставці-підкові біля ялинки','sec:lab'),N('z7.jpg','Набір ялинкових прикрас','Набір ялинкових прикрас у подарунковій коробці серед ялинових гілок','WN-08')];
+ g('zyma').sl=[N('z3.jpg','Шоколадний Миколай','Шоколадний Миколай у червоних подарункових коробках','WN-05'),N('z2.jpg','Адвент-календарі','Адвент-календарі на 24 віконця','tab:AD-01'),N('z6.jpg','Моя ялинка','Набір «Моя ялинка»: синя коробка з білими кульками для розпису','WN-01'),N('z1.jpg','Горнятка для двох','Набір «Горнятка для двох»: два горнятка у святковій коробці','WN-09'),N('wn06.jpg','Горнятко зі свічками','Набір: горнятко, льодяник-посох, свічки й листівка в червоній коробці','WN-06'),N('wn02.jpg','Сніговик-розмальовка','Набір «Сніговик-розмальовка»','WN-02'),N('wn03.jpg','Дерев’яна розмальовка','Дерев’яна розмальовка до Нового року','WN-03'),N('wn04.jpg','Чарівна паличка','Набір «Чарівна паличка»','WN-04'),N('wn07.jpg','Кульки з солодощами','Прозорі кульки з солодощами','WN-07'),N('z4.jpg','Сніжинки, що світяться','Сніжинки з 3D-друку на ялинці','3D-05'),N('3d06.jpg','Ялинкова іграшка з вертепом','Ялинкова іграшка з 3D-друку з різдвяним вертепом','3D-06'),N('z8.jpg','Новорічна фігурка','Новорічна фігурка з 3D-друку на підставці-підкові біля ялинки','sec:lab'),N('z7.jpg','Лісова розмальовка','Набір «Лісова розмальовка»: шишки, сова й будиночок для розпису в подарунковій коробці','WN-08')];
  g('vesna-velykden').sl=[N('ve1.jpg','Яйця-сюрпризи з цукерками','Яйця-сюрпризи з 3D-друку і кошик із цукерками','EA-01|sec:lab'),N('ve2.jpg','Ажурні яйця-сюрпризи','Ажурні яйця-сюрпризи з 3D-друку серед весняних квітів','EA-01|sec:lab'),N('ve3.jpg','Сюрприз усередині','Ажурне яйце з 3D-друку з цукерками всередині','EA-01|sec:lab'),N('ve4.jpg','Спіральне яйце-сюрприз','Біле спіральне яйце-сюрприз з 3D-друку','EA-01|sec:lab'),N('ve5.jpg','Відкрите яйце з солодощами','Відкрите яйце-сюрприз з 3D-друку з солодощами','EA-01|sec:lab'),N('ve6.jpg','Великодня гра','Різнокольорові яйця-капсули з 3D-друку для великодньої гри','sec:lab')];
  var l=g('lito');l.sl=[N('p3d5.jpg','Органайзер для олівців','Органайзер для олівців з 3D-друку з кольоровими олівцями','sec:lab'),N('p3d6.jpg','Гнучкі змійка й павук','Гнучкі змійка й павук з 3D-друку','sec:lab'),N('bd3.jpg','Значок з вашим малюнком','Закатний значок з дитячим малюнком','sec:badges'),N('bd1.jpg','Значки з вашими фото','Закатні значки з власними фото та малюнками','sec:badges'),N('bd5.jpg','Значки в наявності','Закатні значки з улюбленими героями','sec:badges'),N('lt1.jpg','Солодка мрія','Синя коробка-сюрприз із солодощами','sec:nabory'),N('lt2.jpg','Альбоми','Альбоми для спогадів у подарунковому оформленні','sec:lab')];
  l.lead='Легкі літні подарунки: 3D-іграшки, органайзери й значки з вашими фото. Для відпочинку, табору й випускного';
@@ -995,6 +997,9 @@ var IMG={'HW-01':'hw01.jpg','HW-02':'hw02.jpg','HW-03':'hw03.jpg','HW-04':'hw04.
 indexP();
 function money(v){if(v===''||v==null)return '';var n=Number(v);if(isNaN(n))return '';return 'від '+Math.ceil(n-1e-9)+' грн'}
 function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+/* Назва в лапках без подвоєння: «Адвент-календар «…»» не беремо в лапки вдруге і не додаємо «Набір» (22.11.2026) */
+function qt(t){t=String(t==null?'':t);return t.indexOf('«')>=0?t:'«'+t+'»'}
+function setNm(t){t=String(t==null?'':t);return t.indexOf('«')>=0?t:'Набір «'+t+'»'}
 var THEMES=['brand','kokhannia','rodyna','ukraina','zyma','vesna-velykden','lito','osin','halloween'];
 function pickCampaign(){
  /* 1) рішення таблиці: «Зараз на першому екрані» = так (з урахуванням «Ручний показ до») */
@@ -1189,7 +1194,7 @@ function sent(x){x=String(x==null?'':x).replace(/\s+/g,' ').trim();return x&&!/[
 function partsOf(p){return p.contents?String(p.contents).split(';').map(function(x){return x.trim()}).filter(Boolean):[]}
 function priceOf(p){return p.price_from!==''&&p.price_from!=null?money(p.price_from):'Ціну уточнимо'}
 function card(p,g){var id=esc(p.item_id),im=photoOf(p.item_id,600),n=photosOf(p.item_id).length,pt=partsOf(p);
- return '<article class="card" data-pid="'+id+'"><button type="button" class="im js-more" data-pid="'+id+'" aria-label="Детальніше: «'+esc(p.title)+'»">'+(im?'<img src="'+esc(im)+'" alt="Набір «'+esc(p.title)+'»" loading="lazy" width="600" height="600">':'')+(n>1?'<span class="cnt">'+n+' фото</span>':'')+'</button>'
+ return '<article class="card" data-pid="'+id+'"><button type="button" class="im js-more" data-pid="'+id+'" aria-label="Детальніше: '+esc(qt(p.title))+'">'+(im?'<img src="'+esc(im)+'" alt="'+esc(setNm(p.title))+'" loading="lazy" width="600" height="600">':'')+(n>1?'<span class="cnt">'+n+' фото</span>':'')+'</button>'
  +'<div class="bd">'+(g?'<span class="st st-'+g.state+'">'+esc(stTxt(g))+'</span>':'')+'<b>'+esc(p.title)+'</b><span class="pr">'+priceOf(p)+'</span>'
  +(pt.length?'<span class="cn">'+esc(pt.join('; '))+'</span>':'')
  +'<div class="acts2"><button type="button" class="more js-more" data-pid="'+id+'">Детальніше</button><button type="button" class="buy js-card" data-pid="'+id+'" data-cid="'+esc(g?g.main.campaign_id:'')+'" data-t="'+esc(g?g.main.title:'')+'">'+buyTxt(g)+'</button></div></div></article>'}
@@ -1264,11 +1269,12 @@ function openSet(pid,from){var p=PBY[pid];if(!p)return false;
  var g=GR.filter(function(x){return x.items.some(function(i){return i.item_id===pid})})[0];NOW={p:p,g:g};NFOC=document.activeElement;
  document.getElementById('nsT').textContent=p.title;
  var ph=photosOf(pid,1000);
- NT.innerHTML=ph.length?ph.map(function(f,i){return '<div class="nsl"><img src="'+esc(f.src)+'" alt="'+esc(f.alt||('Набір «'+p.title+'»'+(ph.length>1?', фото '+(i+1)+' з '+ph.length:'')))+'"'+(i?' loading="lazy"':'')+'></div>'}).join(''):'<div class="nsl"></div>';
+ NT.innerHTML=ph.length?ph.map(function(f,i){return '<div class="nsl"><img src="'+esc(f.src)+'" alt="'+esc(f.alt||(setNm(p.title)+(ph.length>1?', фото '+(i+1)+' з '+ph.length:'')))+'"'+(i?' loading="lazy"':'')+'></div>'}).join(''):'<div class="nsl"></div>';
  document.getElementById('ndots').innerHTML=ph.length>1?ph.map(function(f,i){return '<i'+(i?'':' class="on"')+'></i>'}).join(''):'';
  NS.classList.toggle('one',ph.length<2);
  var pt=partsOf(p);
  document.getElementById('ninfo').innerHTML='<p class="npr">'+priceOf(p)+'</p>'+(g?'<span class="st st-'+g.state+'">'+esc(stTxt(g))+'</span>':'')
+  +(sent(p.description)?'<p class="ndesc">'+esc(sent(p.description))+'</p>':'')
   +(pt.length?'<h4>Склад</h4><ul>'+pt.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')
   +(sent(p.contents_note)?'<p class="ncn">'+esc(sent(p.contents_note))+'</p>':'')
   +(function(){var w=[];if(p.not_under_3==='так')w.push('Не для дітей до 3 років: дрібні деталі.');if(sent(p.warning))w.push(sent(p.warning));return w.length?'<div class="nwarn" role="note"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5A00" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>'+esc(w.join(' '))+'</span></div>':''})()
@@ -1297,7 +1303,7 @@ document.getElementById('nnext').onclick=function(){NT.scrollBy({left:NT.clientW
 document.getElementById('nbuy').onclick=function(){var p=NOW.p,g=NOW.g;closeSet();setTimeout(function(){window.fmOpenOrder&&fmOpenOrder({productId:p.item_id,campaignId:g?g.main.campaign_id:window.FM_CAMPAIGN,occasion:g?g.main.title:(CUR?CUR.title:''),place:'sheet'})},150)};
 document.getElementById('nshare').onclick=function(){var p=NOW.p,u=location.origin+location.pathname+'#nabir-'+encodeURIComponent(p.item_id);
  window.fmEvent&&fmEvent('share',{fm_product:p.item_id});
- if(navigator.share){navigator.share({title:'Фабрика моментів — '+p.title,text:'Подивись цей набір: «'+p.title+'»',url:u}).catch(function(){});return}
+ if(navigator.share){navigator.share({title:'Фабрика моментів — '+p.title,text:(p.title.indexOf('«')>=0?'Подивись: '+p.title:'Подивись цей набір: «'+p.title+'»'),url:u}).catch(function(){});return}
  var ok=function(){toastMsg('Посилання на набір скопійовано')};
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(ok,function(){prompt('Скопіюйте посилання:',u)});else prompt('Скопіюйте посилання:',u)};
 var tgo=document.getElementById('tgoff');if(CFG.telegram){var ta=document.createElement('a');ta.className='ic';ta.href=CFG.telegram;ta.target='_blank';ta.rel='noopener';ta.setAttribute('aria-label','Telegram');ta.innerHTML=tgo.innerHTML;tgo.replaceWith(ta)}else tgo.onclick=function(){toastMsg('Telegram тимчасово недоступний. Пишіть в Instagram або на пошту.')};
